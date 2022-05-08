@@ -755,168 +755,16 @@
     if ($this->uri->segment(1) != 'auth') {
         $idn = $this->db->query("SELECT * FROM identitas where id_identitas='1'")->row_array();
     ?>
-        <header class="header header--1" data-sticky="true">
-            <div class="header__topone">
-                <div class="container">
-                    <div class="header__left">
-                        <p><?php echo $idn['info_atas']; ?></p>
-                    </div>
-                    <div class="header__right">
-                        <ul class="header__top-links">
-			    <!--
-                            <li><i class="icon-telephone"></i> <a href="#"> Pusat Bantuan<strong> : <?php echo $idn['no_telp']; ?></strong></a></li>
-                            <li><i class="icon-map-marker"></i> <a href="<?php echo base_url(); ?>konfirmasi/tracking">Telusuri Pesanan</a></li>
-			    -->
-                            <?php
-                            if (config('mode')=='marketplace'){
-                                if ($this->session->level == 'konsumen') {
-                                    if (reseller($this->session->id_konsumen) != '') {
-                                        $komplain_toko = $this->db->query("SELECT * FROM rb_pusat_bantuan where id_terlapor='".$this->session->id_konsumen."' AND putusan='proses'"); 
-                                ?>
-                                        <li>
-                                            <div class="ps-dropdown"><a href="#"><i class='icon-bag'></i> Menu Jualan <span class="badge badge-secondary"><?php echo (total_penjualan('0', reseller($this->session->id_konsumen))+$komplain_toko->num_rows()); ?></span> </a>
-                                                <ul class="ps-dropdown-menu">
-                                                    <li><a href="<?php echo base_url(); ?>members/profil_toko"><i class='fa fa-gears'></i> Pengaturan</a></li>
-                                                    <li><a href="<?php echo base_url(); ?>members/produk"><i class='fa fa-th'></i> Daftar Produk</a></li>
-                                                    <li><a href="<?php echo base_url(); ?>members/alamat_cod"><i class='fa fa-map-marker'></i>&nbsp; Alamat Transaksi COD</a></li>
-                                                    
-                                                    <li><a href="<?php echo base_url(); ?>komplain?s=terlapor"><i class='fa fa-warning'></i> Komplain (Terlapor) <span class="badge badge-secondary" style='font-size:85%; background-color: #cecece; color:#000'><?php echo $komplain_toko->num_rows(); ?></span></a></li>
-                                                    <li><a href="<?php echo base_url(); ?>members/penjualan"><i class='fa fa-list-alt'></i> Orders Masuk <span class="badge badge-secondary" style='font-size:85%; background-color: #cecece; color:#000'><?php echo total_penjualan('0', reseller($this->session->id_konsumen)); ?></span></a></li>
-                                                    <!--
-													<li><a href="<?php echo base_url(); ?>members/pembelian"><i class='fa fa-reorder'></i> Orders Pusat (Penjual)</a></li>
-													<li><a href="<?php echo base_url(); ?>members/upgrade"><i class="fa fa-star text-yellow"></i> <span class="blink_me">Upgrade Jualan</span></a></li>
-													-->
-												</ul>
-                                            </div>
-                                        </li>
-                                <?php
-                                    } else {
-                                        echo "<li><a href='" . base_url() . "members/buat_toko'><i class='icon-bag'></i> Buat Jualan</a></li>";
-                                    }
-                                }
-                            }
-
-                            $komplain_beli = $this->db->query("SELECT * FROM rb_pusat_bantuan where id_pelapor='".$this->session->id_konsumen."' AND putusan='proses'");
-                            ?>
-                            <li>
-                                <div class="ps-block--user-header">
-                                    <div class="ps-block__left"><i class="icon-user"></i></div>
-                                    <div class="ps-block__right">
-                                        <?php
-                                        if ($this->session->level == 'konsumen') {
-                                            $sopir = $this->db->query("SELECT id_sopir FROM rb_sopir where id_konsumen='".$this->session->id_konsumen."'")->row_array();
-                                            $cek_pesanan_sopir = $this->db->query("SELECT * FROM rb_penjualan a WHERE a.kurir='$sopir[id_sopir]' AND a.proses!='4' AND service='SOPIR'")->num_rows();
-                                            $pesanan_sopir = '<spanGagal class="badge badge-secondary" style="font-size:85%; background-color: #cecece; color:#000">'.$cek_pesanan_sopir.'</spanGagal>';
-                                            
-                                            echo "<div class='ps-dropdown'>
-                                                    <a style='padding-right:0px' href='#'>Akun <span class='badge badge-secondary'>".($komplain_beli->num_rows()+$cek_pesanan_sopir)."</span> <span class='fa fa-chevron-down'></span></a>
-                                                    <ul class='ps-dropdown-menu'>";
-                                                            $data = array('<i class="icon-user"></i> Profile','<i class="icon-couch"></i> Sosmed','<i class="icon-bag-dollar"></i> Data Bank','<i class="fa fa-money"></i> Keuangan','<i class="icon-heart"></i> Wishlist','<i class="icon-bag2"></i> Pembelian','<i class="icon-car"></i> Jadi Kurir '.$pesanan_sopir.'');
-                                                            $link = array('profile','sosial_media','rekening_bank','withdraw','wishlist','orders_report','trx_pulsa','sopir');
-                                                            for ($i=0; $i < count($data); $i++) { 
-                                                                echo "<li><a href='".base_url()."members/".$link[$i]."'>".$data[$i]."</a></li>";
-                                                            }
-                                                        echo "<li><a href='" . base_url() . "komplain?s=pelapor'><i class='fa fa-warning'></i> Komplain <span class='badge badge-secondary' style='font-size:85%; background-color: #cecece; color:#000'>".$komplain_beli->num_rows()."</span></a></li>
-                                                              <li><a href='" . base_url() . "auth/logout'><i class='icon-exit'></i> Logout</a></li>
-                                                    </ul>
-                                                  </div>";
-                                                echo "";
-                                        } else {
-                                            echo "<a style='margin-right:0px' href='#' data-toggle='modal' data-target='.bd-example-modal-lg'>Login</a>";
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <header class="header header--1 header--sticky" data-sticky="true">
+            
             <div class="header__top">
                 <div class="ps-container">
                     <div class="header__left">
-                        <div class="menu--product-categories">
-                            <div class="menu__toggle"><i class="icon-menu"></i><span> Kategori Produk</span></div>
-                            <div class="menu__content">
-                                <ul class="menu--dropdown">
-                                    <?php
-                                    $kategorii = $this->model_app->view_ordering('rb_kategori_produk', 'nama_kategori', 'ASC');
-                                    foreach ($kategorii as $rows) {
-                                        if ($rows['icon_kode'] != '') {
-                                            $icon = "<i class='$rows[icon_kode]'></i>";
-                                        } elseif ($rows['icon_image'] != '') {
-                                            $icon = "<img style='width:18px; height:18px; margin-right:10px' src='" . base_url() . "asset/foto_produk/$rows[icon_image]'>";
-                                        } else {
-                                            $icon = "";
-                                        }
-                                        $sub_kategori = $this->db->query("SELECT * FROM rb_kategori_produk_sub where id_kategori_produk='$rows[id_kategori_produk]' ORDER BY nama_kategori_sub ASC");
-                                        if ($sub_kategori->num_rows() >= 1) {
-                                            echo "<li class='current-menu-item menu-item-has-children has-mega-menu'><a href='" . base_url() . "produk/kategori/$rows[kategori_seo]'> $icon $rows[nama_kategori] <span class='caret caret-right'></span></a>
-                                                <div class='mega-menu'>";
-                                            if ($sub_kategori->num_rows() >= 10) {
-                                                $total1 = ceil($sub_kategori->num_rows() / 2);
-                                                $total2 = floor($sub_kategori->num_rows() / 2);
-                                                $sub_kategori1 = $this->db->query("SELECT * FROM rb_kategori_produk_sub where id_kategori_produk='$rows[id_kategori_produk]' ORDER BY id_kategori_produk_sub ASC LIMIT 0,$total1");
-                                                $sub_kategori2 = $this->db->query("SELECT * FROM rb_kategori_produk_sub where id_kategori_produk='$rows[id_kategori_produk]' ORDER BY id_kategori_produk_sub ASC LIMIT $total1,$total2");
-                                                echo "<div class='mega-menu__column'>
-                                                        <ul class='mega-menu__list'>";
-                                                foreach ($sub_kategori1->result_array() as $row) {
-                                                    if ($row['icon_kode'] != '') {
-                                                        $icons = "<i class='$row[icon_kode]'></i>";
-                                                    } elseif ($row['icon_image'] != '') {
-                                                        $icons = "<img style='width:18px; height:18px' src='" . base_url() . "asset/foto_produk/$row[icon_image]'>";
-                                                    } else {
-                                                        $icons = "";
-                                                    }
-                                                    echo "<li class='current-menu-item'><a href='" . base_url() . "produk/subkategori/$row[kategori_seo_sub]'>$icons $row[nama_kategori_sub]</a></li>";
-                                                }
-                                                echo "</ul>
-                                                    </div>";
-
-                                                echo "<div class='mega-menu__column'>
-                                                        <ul class='mega-menu__list'>";
-                                                foreach ($sub_kategori2->result_array() as $row) {
-                                                    if ($row['icon_kode'] != '') {
-                                                        $icons = "<i class='$row[icon_kode]'></i>";
-                                                    } elseif ($row['icon_image'] != '') {
-                                                        $icons = "<img style='width:18px; height:18px' src='" . base_url() . "asset/foto_produk/$row[icon_image]'>";
-                                                    } else {
-                                                        $icons = "";
-                                                    }
-                                                    echo "<li class='current-menu-item'><a href='" . base_url() . "produk/subkategori/$row[kategori_seo_sub]'>$icons $row[nama_kategori_sub]</a></li>";
-                                                }
-                                                echo "</ul>
-                                                    </div>";
-                                            } else {
-                                                echo "<div class='mega-menu__column'>
-                                                        <ul class='mega-menu__list'>";
-                                                foreach ($sub_kategori->result_array() as $row) {
-                                                    if ($row['icon_kode'] != '') {
-                                                        $icons = "<i class='$row[icon_kode]'></i>";
-                                                    } elseif ($row['icon_image'] != '') {
-                                                        $icons = "<img style='width:18px; height:18px' src='" . base_url() . "asset/foto_produk/$row[icon_image]'>";
-                                                    } else {
-                                                        $icons = "";
-                                                    }
-                                                    echo "<li class='current-menu-item'><a href='" . base_url() . "produk/subkategori/$row[kategori_seo_sub]'>$icons $row[nama_kategori_sub]</a></li>";
-                                                }
-                                                echo "</ul>
-                                                    </div>";
-                                            }
-                                            echo "</div>
-                                            </li>";
-                                        } else {
-                                            echo "<li class='current-menu-item'><a href='" . base_url() . "produk/kategori/$rows[kategori_seo]'> $icon $rows[nama_kategori]</a></li>";
-                                        }
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
-                        </div>
+                        
                         <?php
                         $logo = $this->model_utama->view_ordering_limit('logo', 'id_logo', 'DESC', 0, 1);
                         foreach ($logo->result_array() as $row) {
-                            echo "<a class='ps-logo' href='" . base_url() . "'><img src='" . base_url() . "asset/logo/$row[gambar]'/></a>";
+                            echo "<a class='sticky-logo' href='" . base_url() . "'><img src='" . base_url() . "asset/logo/$row[gambar]'/></a>";
                         }
                         ?>
                     </div>
@@ -967,25 +815,12 @@
                     <div class="header__right">
                         <div class="header__actions">
                             <!--<a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a>-->
-                            <?php
-                            $wishlist = $this->db->query("SELECT * FROM rb_konsumen_simpan where id_konsumen='" . $this->session->id_konsumen . "'")->num_rows();
-                            echo "<a class='header__extra' href='" . base_url() . "members/wishlist'><i class='icon-heart'></i><span><i class='wishlistcount'>$wishlist</i></span></a>
-                                <div class='ps-cart--mini'><a class='header__extra' href='#'><i class='icon-bag2'></i><span><i class='show_cart_count'></i></span></a>
-                                <div class='ps-cart__content'>
-                                    <div class='ps-cart__items'>
-                                        <div class='show_cart'></div>
-                                    </div>
-                                    <div class='ps-cart__footer'>
-                                        <div class='show_cart_button'></div>
-                                    </div>
-                                </div>
-                            </div>";
-                            ?>
+                            
                         </div>
                     </div>
                 </div>
             </div>
-            <?php include "main-menu.php"; ?>
+            <?php // include "main-menu.php"; ?>
         </header>
     <?php } ?>
     <?php
