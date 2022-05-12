@@ -570,6 +570,13 @@
             overflow-y: scroll; 
         }
 
+        .boxed-border{
+            border-bottom: 5px solid #01826F;
+            border-radius: 4px;
+            width: 49px;
+            margin: 0 auto;
+        }
+
         @media (max-width: 479px) {
             .penawaran{
                 font-size:20px !important;
@@ -624,6 +631,273 @@
             padding: 3px 20px;
             margin-left: 30px;
         }
+
+        .boxed-white{
+            background: rgba(255, 255, 255, 0.99);
+            border: 1px solid white;
+            border-radius: 15px;
+            max-width: 944px;
+            padding: 25px 0 !important;
+        }
+
+        .boxed-title{
+            text-align: center;
+            font-weight: 200;
+        }
+
+        .boxed-white-before-3{
+            background: #8D8D8D;
+            width: 1100px;
+            height: 225px;
+            position: absolute;
+            top: 25px;
+            border-radius: 12px;
+        }
+
+        .boxed-white-before-2{
+            background: #5C5C5C;
+            width: 1165px;
+            height: 200px;
+            position: absolute;
+            top: 35px;
+            border-radius: 12px;
+        }
+
+        .boxed-white-before-1{
+            background: #333;
+            width: 1228px;
+            height: 175px;
+            position: absolute;
+            top: 50px;
+            border-radius: 12px;
+        }
+
+        /* owl-carousel */
+
+        /* sliders container */
+            #owlCarousel, 
+            .owl-stage-outer, 
+            .owl-stage,
+            .owl-item-bg,
+            .owl-item { 
+            height: 100%;
+            min-height: 200px;
+            }
+
+            #owlCarousel{
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            }
+            #owlCarousel:hover .owl-nav{
+                opacity: 1;
+            }
+            /* slider container */
+            .owl-item {
+                display: inline-block;
+                width: 100%;
+                overflow: hidden;
+                -webkit-backface-visibility: hidden;
+            /*     -webkit-transform: translateZ(0) scale(1.0, 1.0); */
+            }
+
+            .owl-item .owl-item-bg {
+                width: 100%;
+                display: inline-block;
+                position: absolute;
+                background-size: 100% 100%;
+                background-position: center center;
+            }
+
+            /* previus/next slider control container */
+            .owl-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-80px);
+            left: 0;
+            right: 0;
+                opacity: 0;
+                transition: all .3s;
+            }
+
+            /* previus/next slider control*/
+            .owl-prev,
+            .owl-next {
+                width: 200px;
+                height: 100px;
+                line-height: 70px;
+                position: absolute;
+                top:50%;
+                transform: translateY(50%);
+            /*     border-radius: 4px; */
+                overflow: hidden;
+                transition: all 1s ease
+            }
+
+            /* previus slider control*/
+            .owl-prev { 
+                left: 10px;
+            }
+            /* next slider control*/
+            .owl-next { 
+                right: 10px; 
+            }
+            /* slider controls thump image and icon */
+            .owl-prev-thump,
+            .owl-prev-icon,
+            .owl-next-thump,
+            .owl-next-icon {
+                height: 100%;
+            }
+            /* slider controls thump image */
+            .owl-prev-thump,
+            .owl-next-thump {
+                width: 100%;
+                background-size: cover;
+                transition: all 1s ease-in-out;
+                image-rendering: -webkit-optimize-contrast;
+            }
+            /* slider previous/next controls icon */
+            .owl-prev-icon,
+            .owl-next-icon {
+                width: 40%;
+                    height: 100%;
+                background-color: rgba(0,0,0,.4);
+                position: absolute;
+                top: 0;
+                    padding-top: 8%;
+                text-align: center;
+                transition: all 1s ease;
+            }
+            /* slider previous/next fontawsome icon */
+            .owl-prev-icon:before,
+            .owl-next-icon:before {
+                font-family: FontAwesome;
+                color: rgba(255,255,255,.7);
+                font-size: 30px;
+                transition: all 1s ease
+            }
+            /* left arrow */
+            .owl-prev-icon:before {
+                content: '\f104';
+            }
+            /* right arrow */
+            .owl-next-icon:before {
+                content: '\f105';
+            }
+
+            .owl-prev-icon {left: 0;}
+            .owl-next-icon {right: 0}
+
+            /*-----------
+            nav hover
+            ------------*/
+            /* prevent animation when disabling loop mode 
+            .owl-next:not(.disabled):hover
+            */
+            .owl-prev:hover,
+            .owl-next:hover {
+                animation: navShadow 4s ease-in-out infinite;
+            }
+            .owl-prev:hover .owl-prev-icon,
+            .owl-next:hover .owl-next-icon {
+                width: 25%;
+            }
+
+            @keyframes navShadow {
+                0%, 100% {box-shadow: 0px 0px 1px 0 #f1f1f1;}
+                50% {box-shadow: 0px 0px 5px 0 #f1f1f1}
+            }
+
+            .owl-prev.disabled:hover , 
+            .owl-next.disabled:hover {
+            animation: none;
+            }
+            .owl-prev.disabled:hover .owl-prev-icon, 
+            .owl-next.disabled:hover .owl-next-icon {
+            width: 50%;
+            }
+            /*-----------------------------------
+                    Owl content styling
+            -----------------------------------*/
+            .slide-content {
+            position: absolute;
+            right: 0;
+            top: 35%;
+            width: 45%;
+            height: 300px;
+            padding: 70px 70px 0;
+            text-align: center;
+            /*   transform: translate(-50%,-50%) rotate3d(1, 0, 0, -90deg); */
+            transform-origin: top;
+            background-color: rgba(0,0,0,.4);
+            /*   -webkit-clip-path: polygon(0 0 , 100% 0 , 90% 100% , 10% 100% ); */
+            color: #fff;
+            /*   font-size: 2em; */
+            }
+            .slide-content, 
+            .slide-content h3,
+            .slide-content h2,
+            .slide-content p,
+            .slide-content h3:before,
+            .slide-content h3:after {
+            transition: all 2s ease;
+            }
+            .slide-content h3 {
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.95);
+            /*   transform: translate3d(-100%, 0,1px); */
+            }
+            .slide-content h3:before,
+            .slide-content h3:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 2px;
+            position: absolute;
+            top: 49%;
+            background-color: #f1f1f1;
+            }
+            .slide-content h3:before {
+            left: -90px;
+            /*   transform: translate3d(-700%, 0, 1px) */
+            }
+            .slide-content h3:after {
+            right: -90px;
+            /*   transform: translate3d(700%, 0, 1px) */
+            }
+            .slide-content h2 {
+            color: #f9f9f9;
+            /*   font-size: 1.3em; */
+            margin-top: 15px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            /*   transform: translate3d(100%, 0,1px); */
+            }
+            .slide-content p {
+            /*   font-size: .6em; */
+            /*   padding: 0 190px; */
+            line-height: 1.4em;
+            letter-spacing: 1px;
+            text-transform: capitalize;
+            color: rgba(255,255,255,.8);
+            /*   transform: translate3d(0, 400%,1px); */
+            }
+            /* animate content */
+            .owl-item.active .slide-content {
+            transform: translate(-20%, 0%) rotate3d(1, 0, 0, 0);
+            transition-delay: .7s
+            }
+            .owl-item.active h3,
+            .owl-item.active h2,
+            .owl-item.active p,
+            .owl-item.active h3:before,
+            .owl-item.active h3:after {
+            transform: translate3d(0, 0,1px);
+            transition-delay: 1s
+            }
     </style>
 </head>
 
@@ -808,7 +1082,7 @@
             <?php // include "main-menu.php"; ?>
         </header>
     <?php } ?>
-    <div style="padding-top:70px;"></div>
+    <!-- <div style="padding-top:70px;"></div> -->
     <?php
     if ($this->uri->segment('1') == 'produk' and $this->uri->segment('2') == 'detail') {
         include "mobile/produk_detail.php";
@@ -1549,6 +1823,78 @@
             });
             }
         });
+    </script>
+
+    <script>
+        $(document).ready(()=> {
+            'use strict';
+
+                var owl = $('.owl-carousel'),
+                    item,
+                    itemsBgArray = [], // to store items background-image
+                    itemBGImg;
+            
+                owl.owlCarousel({  
+                    items: 1,
+                    smartSpeed: 1000,
+                    autoplay: true,
+                    autoplayTimeout: 8000,
+                    autoplaySpeed: 1000,
+                    loop: true,
+                    nav: true,
+                    navText: false,
+                    onTranslated: function () {
+                        changeNavsThump();
+                    }
+                });
+            
+                $('.active').addClass('anim');
+            
+                var owlItem = $('.owl-item'),
+                    owlLen = owlItem.length;
+                /* --------------------------------
+                * store items bg images into array
+                --------------------------------- */
+                $.each(owlItem, function( i, e ) {
+                    itemBGImg = $(e).find('.owl-item-bg').attr('src');
+                    itemsBgArray.push(itemBGImg);
+                });
+                /* --------------------------------------------
+                * nav control thump
+                * nav control icon
+                --------------------------------------------- */
+                var owlNav = $('.owl-nav'),
+                    el;
+                
+                $.each(owlNav.children(), function (i,e) {
+                    el = $(e);
+                    // append navs thump/icon with control pattern(owl-prev/owl-next)
+                    el.append('<div class="'+ el.attr('class').match(/owl-\w{4}/) +'-thump">');
+                    el.append('<div class="'+ el.attr('class').match(/owl-\w{4}/) +'-icon">');
+                });
+                
+                /*-------------------------------------------
+                Change control thump on each translate end
+                ------------------------------------------- */
+                function changeNavsThump() {
+                    var activeItemIndex = parseInt($('.owl-item.active').index()),
+                        // if active item is first item then set last item bg-image in .owl-prev-thump
+                        // else set previous item bg-image
+                        prevItemIndex = activeItemIndex != 0 ? activeItemIndex - 1 : owlLen - 1,
+                        // if active item is last item then set first item bg-image in .owl-next-thump
+                        // else set next item bg-image
+                        nextItemIndex = activeItemIndex != owlLen - 1 ? activeItemIndex + 1 : 0;
+                    
+                    $('.owl-prev-thump').css({
+                        backgroundImage: 'url(' + itemsBgArray[prevItemIndex] + ')'
+                    });
+                    
+                    $('.owl-next-thump').css({
+                        backgroundImage: 'url(' + itemsBgArray[nextItemIndex] + ')'
+                    });
+                }
+                changeNavsThump();
+            });
     </script>
 
     <!-- Go to www.addthis.com/dashboard to customize your tools  

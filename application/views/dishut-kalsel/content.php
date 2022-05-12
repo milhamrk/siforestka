@@ -3,17 +3,28 @@
 
     <div class="ps-home-banner ps-home-banner--1">
         <div class="ps-container" style='padding:0 0px'>
+            
             <div class="ps-section">
-                <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
-                    <?php 
-                        $slide1 = $this->db->query("SELECT * FROM slide ORDER BY id_slide ASC");
-                        foreach ($slide1->result_array() as $row) {
-                            if ($row['gambar'] ==''){ $foto_slide = base_url()."asset/foto_berita/no-image.jpg"; }else{ $foto_slide = base_url()."asset/foto_slide/$row[gambar]"; }
-                            $judul = $row['keterangan'];
-                            echo "<div class='ps-banner'><a title='$judul' href='".base_url()."auth/login'><img  style='width:100%' class='preview' loading='lazy' src='$foto_slide' alt='$row[gambar]'></a></div>"; 
-                            $no++;
-                        }
-                    ?>
+                <!-- / photos from stocksnap.io -->
+                <div class='owl-carousel' id='owlCarousel'>
+                <div class='slide'>
+                    <img class='owl-item-bg' src='https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/30LJYJGOMY.jpg'>
+                    <div class='slide-content'>
+                    <div class='overlay'></div>
+                    <h3>Welcome</h3>
+                    <h2>Mea Vocibus Eloquentiam</h2>
+                    <p>erant aperiri sapientem senserit quo et. Sea aliquid interpretaris te, in his erant aperiri sapientem</p>
+                    </div>
+                </div>
+                <div class='slide'>
+                        <img class='owl-item-bg' src='https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/5607D011AC.jpg'>
+                        <div class='slide-content'>
+                        <div class='overlay'></div>
+                        <h3>Nam consequat felis</h3>
+                        <h2>aliquet mi vestibulum</h2>
+                        <p>Maecenas euismod mauris pretium nibh vestibulum pellentesque. Sed porta malesuada viverra, Pellentesque egestas faucibus turpis.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,22 +64,35 @@
 
 <!-- iklan tengah -->
  
-    <div class="ps-home-ads " style='background:#fff'>
+    <!-- <div class="ps-home-ads " style='background:#000;background-image:url("<?php echo base_url()."asset/images/layanan.png"; ?>");background-repeat: no-repeat;background-size: 100% 100%;'> -->
+    <div class="ps-home-ads " style='background:#000;padding-top:50px;'>
         <div class="container">
-            <div class="row">
-                <?php
-                $iklantengah = $this->db->query("SELECT * FROM iklantengah where judul like 'home%'");
-                foreach ($iklantengah->result_array() as $b) {
-                    $string = $b['gambar'];
-                    if ($b['gambar'] != ''){
-                        if(preg_match("/swf\z/i", $string)) {
-                            echo "<div class='col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6'><embed loading='lazy' class='ps-collection preview' src='".base_url()."asset/foto_iklantengah/$b[gambar]' quality='high' type='application/x-shockwave-flash'></div>";
-                        } else {
-                            echo "<div class='col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6'><a loading='lazy' class='ps-collection preview' href='$b[url]' target='_blank'><img class='preview' loading='lazy' src='".base_url()."asset/foto_iklantengah/$b[gambar]' alt='$b[judul]' /></a></div>";
+            <div class="row justify-content-center" style="position:relative;">
+                <div class="col-md-12 boxed-white-before-1"></div>
+                <div class="col-md-12 boxed-white-before-2"></div>
+                <div class="col-md-12 boxed-white-before-3"></div>
+                <div class="col-md-12 boxed-white">
+                    <div class="row justify-content-center">
+                    <div class="col-md-12 boxed-head">
+                        <h3 class="boxed-title">Layanan</h3>
+                        <div class="boxed-border"></div>
+                    </div>
+                    <?php
+                    $iklantengah = $this->db->query("SELECT * FROM iklantengah where judul like 'home%' order by id_iklantengah asc");
+                    foreach ($iklantengah->result_array() as $b) {
+                        $string = $b['gambar'];
+                        $title = str_replace("home ","",$b['judul']);
+                        if ($b['gambar'] != ''){
+                            if(preg_match("/swf\z/i", $string)) {
+                                echo "<div class='col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4'><embed loading='lazy' class='ps-collection preview' src='".base_url()."asset/foto_iklantengah/$b[gambar]' quality='high' type='application/x-shockwave-flash'><p class='text-center'>$title</p></div>";
+                            } else {
+                                echo "<div class='col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4'><a loading='lazy' class='ps-collection preview' href='$b[url]' target='_blank'><img class='preview' loading='lazy' src='".base_url()."asset/foto_iklantengah/$b[gambar]' alt='$b[judul]' /></a><p class='text-center'>$title</p></div>";
+                            }
                         }
                     }
-                }
-                ?>
+                    ?>
+                    </div>
+                </div>
             </div>
             <!-- < ?php if ($maps!=''){
             echo "<div class='ps-block--site-features' style='margin-top:10px; background-color:#fff; border: none; padding: 10px 0px;'>";
