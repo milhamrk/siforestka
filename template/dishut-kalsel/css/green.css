@@ -2018,8 +2018,7 @@ button {
 
 .form-control:focus {
   outline: none;
-  box-shadow: 0 0 0 #000;
-  border-color: #000;
+  border-color: none !important;
 }
 
 textarea.form-control {
@@ -11634,13 +11633,32 @@ textarea.form-control {
           flex-flow: row nowrap;
 }
 
+.ps-form--quick-search{
+  padding:7px !important;
+}
+
 .ps-form--quick-search .form-control {
   background-color: #fff;
-  border: 1px solid #e1e1e1;
-  border-left: none;
+  /* border: 1px solid #e1e1e1; */
   color: #000;
-  height: 42px;
-  border-radius: 0;
+  height: 37px;
+  outline: none !important;
+  border-radius: 24px;
+  box-shadow: 0 0 16px #eee;
+}
+
+ul.new_menu{
+  padding:15px !important;
+}
+
+header .new_menu li{
+  display: inline-block;
+  padding: 0 15px;
+}
+
+header .new_menu li a:hover{
+  color: #FC9C47;
+  text-decoration: none !important;
 }
 
 .ps-form--quick-search .form-group--icon {
@@ -15671,12 +15689,12 @@ textarea.form-control {
 }
 
 .header .header__right {
-  max-width: 170px;
+  max-width: 270px;
 }
 
 .header .header__top {
   padding: 15px 0;
-  background-color: #fff;
+  background-color: #F3F3F4;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 

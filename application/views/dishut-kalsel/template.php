@@ -528,6 +528,10 @@
             font-size: 13px;
         }
 
+        .form-control, .form-control:focus{
+            border:none !important;
+        }
+
         button.multiselect {
             font-size: 14px;
         }
@@ -755,7 +759,7 @@
     if ($this->uri->segment(1) != 'auth') {
         $idn = $this->db->query("SELECT * FROM identitas where id_identitas='1'")->row_array();
     ?>
-        <header class="header header--1 header--sticky" data-sticky="true">
+        <header class="header header--1 header--sticky fixed-top" data-sticky="true">
             
             <div class="header__top">
                 <div class="ps-container">
@@ -769,35 +773,13 @@
                         ?>
                     </div>
                     <div class="header__center">
-                        <form class="ps-form--quick-search" action="<?php echo base_url() ?>produk" method="GET">
-                            <div class="form-group--icon"><i class="icon-chevron-down" style='z-index:3; padding-left:5px'></i>
-                                <select class="form-control" name='f'>
-                                    <option value="0" selected="selected">Semua</option>
-                                    <?php
-                                    $kategori = $this->model_app->view_ordering('rb_kategori_produk', 'nama_kategori', 'ASC');
-                                    foreach ($kategori as $rows) {
-                                        $sub_kategori = $this->db->query("SELECT * FROM rb_kategori_produk_sub where id_kategori_produk='$rows[id_kategori_produk]' ORDER BY nama_kategori_sub ASC");
-                                        if (cetak($_GET['f'])=="kategori|$rows[id_kategori_produk]"){
-                                            echo "<option class='level-0' value='kategori|$rows[id_kategori_produk]' selected>$rows[nama_kategori]</option>";
-                                        }else{
-                                            echo "<option class='level-0' value='kategori|$rows[id_kategori_produk]'>$rows[nama_kategori]</option>";
-                                        }
-                                        if ($sub_kategori->num_rows() >= 1) {
-                                            foreach ($sub_kategori->result_array() as $row) {
-                                                if (cetak($_GET['f'])=="subkategori|$row[id_kategori_produk_sub]"){
-                                                    echo "<option class='level-1' value='subkategori|$row[id_kategori_produk_sub]' selected> - $row[nama_kategori_sub]</option>";
-                                                }else{
-                                                    echo "<option class='level-1' value='subkategori|$row[id_kategori_produk_sub]'> - $row[nama_kategori_sub]</option>";
-                                                }
-                                            }
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Cari Produk..." autocomplete='off' required>
-                            <button type='submit'>Cari</button>
-                        </form>
+                        <ul class="new_menu">
+                            <li><a href="#">Beranda</a></li>
+                            <li><a href="#">Berita</a></li>
+                            <li><a href="#">Web GIS</a></li>
+                            <li><a href="#">Produk Lokal</a></li>
+                            <li><a href="#">Kontak</a></li>
+                        </ul>
 						<!--
                         <p class='populer'><b>Trending :</b> 
                             < ?php
@@ -813,6 +795,9 @@
 						-->
                     </div>
                     <div class="header__right">
+                        <form class="ps-form--quick-search" action="<?php echo base_url() ?>produk" method="GET">
+                            <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Search..." autocomplete='off' required>
+                        </form>
                         <div class="header__actions">
                             <!--<a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a>-->
                             
@@ -823,6 +808,7 @@
             <?php // include "main-menu.php"; ?>
         </header>
     <?php } ?>
+    <div style="padding-top:70px;"></div>
     <?php
     if ($this->uri->segment('1') == 'produk' and $this->uri->segment('2') == 'detail') {
         include "mobile/produk_detail.php";
