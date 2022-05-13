@@ -8,21 +8,23 @@
                 <!-- / photos from stocksnap.io -->
                 <div class='owl-carousel' id='owlCarousel'>
                 <div class='slide'>
-                    <img class='owl-item-bg' src='https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/30LJYJGOMY.jpg'>
+                    <img class='owl-item-bg' src='<?= base_url()."asset/images/background_header.png" ?>'>
                     <div class='slide-content'>
                     <div class='overlay'></div>
-                    <h3>Welcome</h3>
-                    <h2>Mea Vocibus Eloquentiam</h2>
-                    <p>erant aperiri sapientem senserit quo et. Sea aliquid interpretaris te, in his erant aperiri sapientem</p>
+                    <h3>Kesatuan Pengelolaan Hutan (KPH)</h3>
+                    <h2>Tabalong</h2>
+                    <div class="border-slide"> </div>
+                    <p>Portal berita, informasi, komunikasi, dan edukasi  masyarakat terkait kondisi hutan KPH Tabalong, Kalimantan Selatan.</p>
                     </div>
                 </div>
                 <div class='slide'>
-                        <img class='owl-item-bg' src='https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/5607D011AC.jpg'>
+                        <img class='owl-item-bg' src='<?= base_url()."asset/images/background_header.png" ?>'>
                         <div class='slide-content'>
                         <div class='overlay'></div>
-                        <h3>Nam consequat felis</h3>
-                        <h2>aliquet mi vestibulum</h2>
-                        <p>Maecenas euismod mauris pretium nibh vestibulum pellentesque. Sed porta malesuada viverra, Pellentesque egestas faucibus turpis.</p>
+                        <h3>Kesatuan Pengelolaan Hutan (KPH)</h3>
+                        <h2>Tabalong</h2>
+                        <div class="border-slide"> </div>
+                        <p>Portal berita, informasi, komunikasi, dan edukasi  masyarakat terkait kondisi hutan KPH Tabalong, Kalimantan Selatan.</p>
                         </div>
                     </div>
                 </div>

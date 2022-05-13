@@ -821,19 +821,17 @@
                     Owl content styling
             -----------------------------------*/
             .slide-content {
-            position: absolute;
-            right: 0;
-            top: 35%;
-            width: 45%;
-            height: 300px;
-            padding: 70px 70px 0;
-            text-align: center;
-            /*   transform: translate(-50%,-50%) rotate3d(1, 0, 0, -90deg); */
-            transform-origin: top;
-            background-color: rgba(0,0,0,.4);
-            /*   -webkit-clip-path: polygon(0 0 , 100% 0 , 90% 100% , 10% 100% ); */
-            color: #fff;
-            /*   font-size: 2em; */
+                position: absolute;
+                left: 20%;
+                top: 35%;
+                width: 45%;
+                height: 300px;
+                padding: 70px 70px 0;
+                text-align: left;
+                transform: translate(-50%,-50%) rotate3d(1, 0, 0, -90deg);
+                transform-origin: top;
+                color: #fff;
+                font-size: 2em;
             }
             .slide-content, 
             .slide-content h3,
@@ -846,41 +844,26 @@
             .slide-content h3 {
             position: relative;
             display: inline-block;
-            text-transform: uppercase;
+            font-weight:200;
+            margin-bottom:0px;
+            padding-top:0px;
             color: rgba(255,255,255,.95);
             /*   transform: translate3d(-100%, 0,1px); */
             }
-            .slide-content h3:before,
-            .slide-content h3:after {
-            content: '';
-            display: block;
-            width: 70px;
-            height: 2px;
-            position: absolute;
-            top: 49%;
-            background-color: #f1f1f1;
-            }
-            .slide-content h3:before {
-            left: -90px;
-            /*   transform: translate3d(-700%, 0, 1px) */
-            }
-            .slide-content h3:after {
-            right: -90px;
-            /*   transform: translate3d(700%, 0, 1px) */
-            }
+            
             .slide-content h2 {
             color: #f9f9f9;
             /*   font-size: 1.3em; */
-            margin-top: 15px;
+            margin-top:0px;
+            padding-top:0px;
             margin-bottom: 20px;
-            text-transform: uppercase;
+            font-weight:400;
             /*   transform: translate3d(100%, 0,1px); */
             }
             .slide-content p {
             /*   font-size: .6em; */
             /*   padding: 0 190px; */
             line-height: 1.4em;
-            letter-spacing: 1px;
             text-transform: capitalize;
             color: rgba(255,255,255,.8);
             /*   transform: translate3d(0, 400%,1px); */
@@ -897,6 +880,27 @@
             .owl-item.active h3:after {
             transform: translate3d(0, 0,1px);
             transition-delay: 1s
+            }
+            .border-slide{
+                border-bottom: 4px solid #198A82;
+                width: 70%;
+                height: 5px;
+                background: #198A82;
+                content: ' ';
+                margin-bottom: 11px;
+                border-radius: 8px;
+                position: relative;
+            }
+            .border-slide:after{
+                border-bottom: 4px solid #FFC552;
+                width: 30%;
+                height: 5px;
+                background: #FFC552;
+                content: ' ';
+                margin-bottom: 11px;
+                border-radius: 8px;
+                position: absolute;
+                right: -115px;
             }
     </style>
 </head>
