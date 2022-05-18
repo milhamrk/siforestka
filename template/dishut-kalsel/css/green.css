@@ -16573,8 +16573,9 @@ header .new_menu li a:hover{
 }
 
 .ps-footer {
-  padding-top: 20px;
-  background-color: #fafafa;
+  padding-top: 50px;
+  background-color: rgba(0,0,0,0.9);
+  color:#fff;
 }
 
 .ps-footer__widgets {

@@ -6,23 +6,36 @@
             $kategori_banner = $this->model_app->view('kategori_banner');
             foreach ($kategori_banner->result_array() as $row) {
                 if ($row['id_kategori_banner']=='1'){ 
-                    echo "<aside class='widget widget_contact-us'>
-                        <h4 class='widget-title'>$row[nama_kategori_banner]</h4>
+                    echo "<aside class='widget widget_contact-us' style='width:35%;padding:25px;'>
+                        <h4 class='widget-title'>Tentang Kami</h4>
                         <div class='widget_content'>";
                             $banner = $this->model_app->view_where('banner',array('id_kategori_banner'=>$row['id_kategori_banner'],'posisi'=>'footer'));
                             foreach ($banner->result_array() as $rows) {
                                 echo "<p>".nl2br($rows['keterangan'])."</p>";
                             }
-                            echo "<ul class='ps-list--social'>
-                                <li><a class='facebook' href='https://id-id.facebook.com/DishutProvKalsel/?locale2=id_ID&_rdr' target='_blank'><i class='fa fa-facebook'></i></a></li>
-                                <li><a class='twitter' href='https://mobile.twitter.com/dishutkalsel' target='_blank'><i class='fa fa-twitter'></i></a></li>
-                                <li><a class='google-plus' href='https://youtube.com/channel/UCc1bE078BkLFj3EmjumZSGw' target='_blank'><i class='fa fa-youtube'></i></a></li>
-                                <li><a class='instagram' href='https://instagram.com/dishutprovkalsel?utm_medium=copy_link' target='_blank'><i class='fa fa-instagram'></i></a></li>
-                            </ul>
+                            echo "
                         </div>
                     </aside>";
+                }else if($row['id_kategori_banner']=='6'){ 
+                    echo "<aside class='widget widget_footer' style='width:20%;padding:25px;'>
+                        <h4 class='widget-title'>Alamat</h4>
+                        <p>Jl. A. Yani Km. 6 (arah kaltim), Kelurahan Belimbing Raya, Kec. Murung Pudak, Kab. Tabalong. </p>
+                        <a href='#' style='color:#FFC552;text-decoration:underline;'>lihat peta</a>
+                    </aside>"; 
+                }else if($row['id_kategori_banner']=='7'){ 
+                    echo "<aside class='widget widget_footer' style='width:20%;padding:25px;'>
+                        <h4 class='widget-title'>Statistik Pengunjung</h4>
+                        <p><b style='color:#FFC552;'>Hari ini</b><p><p>48 orang</p>
+                        <p><b style='color:#FFC552;'>Bulan ini</b><p><p>48 orang</p>
+                        <p><b style='color:#FFC552;'>Total</b><p><p>1000 orang</p>
+                    </aside>"; 
+                }else if($row['id_kategori_banner']=='8'){ 
+                    echo "<aside class='widget widget_footer' style='width:25%;padding:25px;'>
+                        <h4 class='widget-title'>Kontak</h4>
+                        <p><i class='fa fa-phone' aria-hidden='true'></i> 0526-2031541</p>
+                    </aside>"; 
                 }else{ 
-                    echo "<aside class='widget widget_footer'>
+                    echo "<aside class='widget widget_footer' style='width:25%;padding:25px;'>
                         <h4 class='widget-title'>$row[nama_kategori_banner]</h4>
                         <ul class='ps-list--link'>";
                             $banner = $this->model_app->view_where('banner',array('id_kategori_banner'=>$row['id_kategori_banner'],'posisi'=>'footer'));
@@ -37,8 +50,5 @@
         ?>
         </div>
         <?php } ?>
-        <div class="ps-footer__copyright">
-            <p>© <?php echo date('Y')." ".config('info_footer'); ?></p>
-        </div>
     </div>
 </footer>

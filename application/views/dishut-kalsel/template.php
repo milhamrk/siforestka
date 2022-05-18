@@ -902,6 +902,14 @@
                 position: absolute;
                 right: -115px;
             }
+
+            footer h1,footer h2, footer h3, footer h4,footer h5, footer h6, .widget_footer .widget-title{
+                color:#fff;
+            }
+            
+            footer p, .ps-list--link li a{
+                color:#fff;
+            }
     </style>
 </head>
 
