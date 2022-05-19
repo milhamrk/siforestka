@@ -910,6 +910,44 @@
             footer p, .ps-list--link li a{
                 color:#fff;
             }
+
+            .mt-50{
+                background:#050505;
+                background-image: url('http://localhost/siforestika/asset/images/bg-footer-top.png');
+                height: 280px;
+                position: relative;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+
+            .top-footer{
+                position: absolute;
+                background: rgba(0,0,0,0.8);
+                color: #fff;
+                width: 1100px;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+                bottom: 30px;
+                padding-bottom: 20px;
+                padding-left:85px;
+                padding-right:85px;
+                padding-top: 25px;
+                border-radius: 9px;
+            }
+
+            .top-footer p, .top-footer ul{
+                color:#ECF0F1;
+                display:inline-block;
+            }
+
+            .top-footer ul li{
+                display:inline-block;
+                color:#FFC552;
+                text-decoration:underline;
+                padding:0 35px;
+            }
     </style>
 </head>
 
@@ -1103,6 +1141,31 @@
     }
 
     echo $contents;
+    if(empty($this->uri->segment('1'))){
+        echo '<div class="mt-50">
+        <div class="top-footer">
+            <p>Link Terkait:</p>
+            <ul>
+                <li><a href="#">kalselprov.go.id</a></li>
+                <li><a href="#">menlhk.go.id</a></li>
+                <li><a href="#">sipongi.menlhk.go.id</a></li>
+                <li><a href="#">iklim.kalsel.bmkg.go.id</a></li>
+            </ul>
+        </div>
+    </div>';
+    }else{
+        echo '<div style="margin-top:50px"></div><div class="top-footer" style="bottom:430px;">
+        <p>Link Terkait:</p>
+        <ul>
+            <li><a href="#">kalselprov.go.id</a></li>
+            <li><a href="#">menlhk.go.id</a></li>
+            <li><a href="#">sipongi.menlhk.go.id</a></li>
+            <li><a href="#">iklim.kalsel.bmkg.go.id</a></li>
+        </ul>
+    </div>';
+    }
+
+    
     include "footer.php";
     $this->model_utama->kunjungan();
 
