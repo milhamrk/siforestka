@@ -167,116 +167,7 @@
         // $date2 = $idn['flash_deal'];
         // if(selisih_waktu_run($date1,$date2)>='1'){
     ?>
-    <div class="ps-deal-of-day">
-        <div class="ps-container">
-			
-            <div class="ps-section__header">
-			</div>
-				<!--
-                <div class="ps-block--countdown-deal">
-                    <div class="ps-block__left">
-                        <h3 class='penawaran'>Flash Deals</h3>
-                    </div>
-                    <div class="ps-block__right">
-                        <figure>
-                            <figcaption></figcaption>
-                            <span style='display:none' id='berakhir'><?php echo $tanggal; ?></span>
-                            
-                            <ul class="ps-countdown d-none d-sm-block" data-time="">
-                                <li><span class="days"></span> Hari</li>
-                                <li><span class="hours"></span> Jam</li>
-                                <li><span class="minutes"></span> Menit</li>
-                                <li><span class="seconds"></span> Detik</li>
-                            </ul>
-                            
-                            <ul class="ps-countdown d-block d-sm-none" data-time="">
-                                <li><span class="days"></span> Hari </li>
-                                <li><span class="hours"></span> Jam </li>
-                                <li><span class="minutes"></span> Menit </li>
-                                <li><span class="seconds"></span> </li>
-                            </ul>
-                            
-                        </figure>
-                    </div>
-                </div><a class='d-none d-sm-block' href="<?php echo base_url(); ?>produk">Lihat Semua</a>
-            </div>
-			
-            <div class="ps-section__content" style='border:1px solid #cecece; padding:5px 8px'>
-                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
-                    <?php 
-                        $produk = $this->model_reseller->produk_flashdeal(0,0,10);
-                        foreach ($produk->result_array() as $row){
-                            $ex = explode(';', $row['gambar']);
-                            if (trim($ex[0])=='' OR !file_exists("asset/foto_produk/".$ex[0])){ $foto_produk = 'no-image.png'; }else{ if (!file_exists("asset/foto_produk/thumb_".$ex[0])){ $foto_produk = $ex[0]; }else{ $foto_produk = "thumb_".$ex[0]; }}
-                            if (strlen($row['nama_produk']) > 38){ $judul = substr($row['nama_produk'],0,38).',..';  }else{ $judul = $row['nama_produk']; }
-                            $jual = $this->model_reseller->jual_reseller($row['id_reseller'],$row['id_produk'])->row_array();
-                            $beli = $this->model_reseller->beli_reseller($row['id_reseller'],$row['id_produk'])->row_array();
-
-                            $disk = $this->model_app->view_where("rb_produk_diskon",array('id_produk'=>$row['id_produk']))->row_array();
-                            $diskon = rupiah(($disk['diskon']/$row['harga_konsumen'])*100,0)." %";
-
-                            if ($beli['beli']-$jual['jual']<=0){ 
-                                $stok = "<div class='ps-product__badge out-stock'>Habis Terjual</div>"; 
-                                $diskon_persen = ''; 
-                                $persentase = 0;
-                            }else{ 
-                                $stok = ""; 
-                                if ($diskon>0){ 
-                                    $diskon_persen = "<div class='ps-product__badge'>$diskon</div>"; 
-                                }else{
-                                    $diskon_persen = ''; 
-                                }
-                                $persentase = ($jual['jual']/$beli['beli'])*100;
-                            }
-                
-                            if ($diskon>=1){ 
-                                $harga_produk =  "Rp ".rupiah($row['harga_konsumen']-$disk['diskon'])." <del>".rupiah($row['harga_konsumen'])."</del>";
-                            }else{
-                                $harga_produk =  "Rp ".rupiah($row['harga_konsumen']);
-                            }
-                            $cek_save = $this->db->query("SELECT * FROM rb_konsumen_simpan where id_konsumen='".$this->session->id_konsumen."' AND id_produk='$row[id_produk]'")->num_rows();
-                            echo "
-                                    <div class='ps-product ps-product--inner'>
-                                    <div class='ps-product'>
-                                    <div class='ps-product__thumbnail'>
-                                    <a href='".base_url()."asset/foto_produk/$foto_produk' class='progressive replace'><img class='preview' loading='lazy' src='".base_url()."asset/foto_produk/$foto_produk' alt='$row[nama_produk]'></a>
-                                        $diskon_persen
-                                        $stok
-                                        <ul class='ps-product__actions produk-$row[id_produk]'>
-                                            <li><a href='".base_url()."produk/detail/$row[produk_seo]' data-toggle='tooltip' data-placement='top' title='Read More'><i class='icon-bag2'></i></a></li>
-                                            <li><a href='#' data-toggle='tooltip' data-placement='top' title='Quick View' class='quick_view' data-id='$row[id_produk]'><i class='icon-eye'></i></a></li>";
-                                            if ($cek_save>='1'){
-                                                echo "<li><a data-toggle='tooltip' data-placement='top' title='Add to Whishlist'><i style='color:red' class='icon-heart'></i></a></li>";
-                                            }else{
-                                                echo "<li><a data-toggle='tooltip' data-placement='top' id='save-$row[id_produk]' title='Add to Whishlist'><i class='icon-heart' onclick=\"save('$row[id_produk]',this.id)\"></i></a></li>";
-                                            }
-                                        echo "</ul>
-                                    </div>
-                                    </div>
-
-                                    <div class='ps-product__container'>
-                                        <p class='ps-product__price sale' style='padding-left:10px'>$harga_produk</p>
-                                        <div class='ps-product__content'><a class='ps-product__title' href='".base_url()."produk/detail/$row[produk_seo]'>$judul</a>
-                                            <div class='ps-product__rating'>
-                                            <select class='ps-rating' data-read-only='true'>".rate_bintang($row['id_produk'])."</select>
-                                            </div>
-                                            <div class='ps-product__progress-bar ps-progress' data-value='$persentase'>
-                                                <div class='ps-progress__value'><span></span></div>
-                                                <p>Terjual : ".rupiah($jual['jual'])." / ".rupiah($beli['beli'])."</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
-                                </div>";
-                
-                          
-                        }
-                    ?>
-                </div>
-            </div>
-			-->
-        </div>
-    </div>
+   
     <?php }else{ echo "<span style='display:none' id='berakhir'></span>"; } ?>
     
     <!--
@@ -305,82 +196,126 @@
 		</div>
 	</div>
 	-->
-    <div class="ps-product-list ps-clothings">
+    <div class="ps-product-list ps-clothings specialized">
         <div class="ps-container">
-            <div class="ps-section__header">
-                <?php 
-                    $ku1 = $this->model_app->view_where("rb_kategori_produk",array('urutan'=>'1'))->row_array();
-                    echo "<h3>$ku1[nama_kategori]</h3>
-                          <ul class='ps-section__links'>
-                            <li><a href='".base_url()."produk/kategori/$ku1[kategori_seo]'>Lihat Semua</a></li>
-                          </ul>";
-                ?>
-            </div>
-            <div class="ps-section__content">
-                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
-                    
-                <?php 
-                $produk = $this->model_reseller->produk_perkategori(0,0,$ku1['id_kategori_produk'],10);
-                foreach ($produk->result_array() as $row){
-                    $ex = explode(';', $row['gambar']);
-                    if (trim($ex[0])=='' OR !file_exists("asset/foto_produk/".$ex[0])){ $foto_produk = 'no-image.png'; }else{ if (!file_exists("asset/foto_produk/thumb_".$ex[0])){ $foto_produk = $ex[0]; }else{ $foto_produk = "thumb_".$ex[0]; }}
-                    if (strlen($row['nama_produk']) > 38){ $judul = substr($row['nama_produk'],0,38).',..';  }else{ $judul = $row['nama_produk']; }
-                    $jual = $this->model_reseller->jual_reseller($row['id_reseller'],$row['id_produk'])->row_array();
-                    $beli = $this->model_reseller->beli_reseller($row['id_reseller'],$row['id_produk'])->row_array();
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>Berita Terbaru</h4>
+                    <span class="border-center"></span>
+                    <div class="berita-section">
+                        <div class="sample">
+                            <div class="row">
+                            <?php 
+                            $no = 0;
+                            foreach ($berita->result_array() as $r) {	
+                                $no++;
+                                $baca = $r['dibaca']+1;	
+                                $isi_berita =(strip_tags($r['isi_berita'])); 
+                                $isi = substr($isi_berita,0,220); 
+                                $isi = substr($isi_berita,0,strrpos($isi," ")); 
+                                $judul = $r['judul']; 
+                                $total_komentar = $this->model_utama->view_where('komentar',array('id_berita' => $r['id_berita']))->num_rows();
+                                $width = 33.33;
+                                if($no==1) $width = 60;
+                                else if($no==2) $width = 40;
 
-                    $disk = $this->model_app->view_where("rb_produk_diskon",array('id_produk'=>$row['id_produk']))->row_array();
-                    $diskon = rupiah(($disk['diskon']/$row['harga_konsumen'])*100,0)." %";
+                                    echo '<div class="card-2 card-mean" style="width:'.$width.'%;">
+                                    <div class="wrapper" style="background: url(';
 
-                    if ($beli['beli']-$jual['jual']<=0){ 
-                        $stok = "<div class='ps-product__badge out-stock'>Habis Terjual</div>"; 
-                        $diskon_persen = ''; 
-                    }else{ 
-                        $stok = ""; 
-                        if ($diskon>0){ 
-                            $diskon_persen = "<div class='ps-product__badge'>$diskon</div>"; 
-                        }else{
-                            $diskon_persen = ''; 
-                        }
-                    }
-        
-                    if ($diskon>=1){ 
-                        $harga_produk =  "Rp ".rupiah($row['harga_konsumen']-$disk['diskon'])." <del>".rupiah($row['harga_konsumen'])."</del>";
-                    }else{
-                        $harga_produk =  "Rp ".rupiah($row['harga_konsumen']);
-                    }
-
-                    $sold = $this->model_reseller->produk_terjual($row['id_produk'],2);
-                    $persentase = ($sold->num_rows()/$beli['beli'])*100;
-                    $cek_save = $this->db->query("SELECT * FROM rb_konsumen_simpan where id_konsumen='".$this->session->id_konsumen."' AND id_produk='$row[id_produk]'")->num_rows();
-                    echo "<div class='ps-product'>
-                            <div class='ps-product__thumbnail'><a href='".base_url()."asset/foto_produk/$foto_produk' class='progressive replace'><img class='preview' loading='lazy' src='".base_url()."asset/foto_produk/$foto_produk' alt='$row[nama_produk]'></a>
-                                $diskon_persen
-                                $stok
-                                <ul class='ps-product__actions produk-$row[id_produk]'>
-                                    <li><a href='".base_url()."produk/detail/$row[produk_seo]' data-toggle='tooltip' data-placement='top' title='Read More'><i class='icon-bag2'></i></a></li>
-                                    <li><a href='#' data-toggle='tooltip' data-placement='top' title='Quick View' class='quick_view' data-id='$row[id_produk]'><i class='icon-eye'></i></a></li>";
-                                    if ($cek_save>='1'){
-                                        echo "<li><a data-toggle='tooltip' data-placement='top' title='Add to Whishlist'><i style='color:red' class='icon-heart'></i></a></li>";
+                                    if ($r['gambar'] == ''){
+                                        echo base_url()."asset/foto_berita/no-image.jpg";
                                     }else{
-                                        echo "<li><a data-toggle='tooltip' data-placement='top' id='save-$row[id_produk]' title='Add to Whishlist'><i class='icon-heart' onclick=\"save('$row[id_produk]',this.id)\"></i></a></li>";
+                                        echo base_url()."asset/foto_berita/$r[gambar]";
                                     }
-                                echo "</ul>
-                            </div>
-                            <div class='ps-product__container'><a class='ps-product__vendor' href='".base_url()."u/".user_reseller($row['id_reseller'])."'>".cek_paket_icon($row['id_reseller'])." $row[nama_reseller]</a>
-                                <div class='ps-product__content'><a class='ps-product__title' href='".base_url()."produk/detail/$row[produk_seo]'>$judul</a>
-                                    <div class='ps-product__rating'>
-                                    <select class='ps-rating' data-read-only='true'>".rate_bintang($row['id_produk'])."</select><span></span>
+                                    
+                                    
+                                    echo ') center / cover no-repeat;">
+                                        <div class="data">
+                                            <div class="content">
+                                            <!-- <span class="author">Jane Doe</span> -->
+                                            <h1 class="title"><a href="#">'.substr_replace($judul, "..", 40).'</a></h1>
+                                            <p class="text" ';
+
+                                            if($no!= 1 && $no!=2){
+                                                echo 'style="height:100px;"';
+                                            }
+                                            
+                                            echo '>'.substr_replace($isi, "..", 90).'</p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a href="#">'.tgl_indo($r['tanggal']).'</a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a href="#">'.$r[nama_lengkap].'</a>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p class='ps-product__price sale'>$harga_produk</p>
-                                </div>
-                                <div class='ps-product__content hover'><a class='ps-product__title' href='".base_url()."produk/detail/$row[produk_seo]'>$row[nama_produk]</a>";
+                                </div>';
+                                }
+                                ?>
                                 
-                                echo "<a style='margin-top:10px' href='".base_url()."produk/detail/$row[produk_seo]' class='ps-btn ps-btn--fullwidth add-to-cart'>Lihat Detail</a>";
-                                echo "</div>
                             </div>
-                        </div>";
-                }
-                ?>
+                        </div>
+                    <?php 
+                        foreach ($berita->result_array() as $r) {	
+                            $baca = $r['dibaca']+1;	
+                            $isi_berita =(strip_tags($r['isi_berita'])); 
+                            $isi = substr($isi_berita,0,220); 
+                            $isi = substr($isi_berita,0,strrpos($isi," ")); 
+                            $judul = $r['judul']; 
+                            $total_komentar = $this->model_utama->view_where('komentar',array('id_berita' => $r['id_berita']))->num_rows();
+                            
+                            echo "<div class='ps-post ps-post--small-thumbnail'>
+                                <div class='ps-post__thumbnail'><a class='ps-post__overlay' href='".base_url()."berita/detail/$r[judul_seo]'></a>";
+                                    if ($r['gambar'] == ''){
+                                        echo "<img src='".base_url()."asset/foto_berita/no-image.jpg' alt='no-image.jpg' /></a>";
+                                    }else{
+                                        echo "<img src='".base_url()."asset/foto_berita/$r[gambar]' alt='$r[gambar]' /></a>";
+                                    }
+                                echo "</div>
+                                <div class='ps-post__content'>
+                                    <div class='ps-post__top'>
+                                        <div class='ps-post__meta'>";
+                                        $tags = (explode(",",$r['tag']));
+                                        $hitung = count($tags);
+                                        for ($x=0; $x<=$hitung-1; $x++) {
+                                            if ($tags[$x] != ''){
+                                                echo "<a href='".base_url()."tag/detail/$tags[$x]'>$tags[$x]</a>";
+                                            }
+                                        }
+                                        echo "</div><a class='ps-post__title' href='".base_url()."berita/detail/$r[judul_seo]'>$judul</a>
+                                        <p>".getSearchTermToBold($isi,$this->input->post('kata'))." . . .</p>
+                                    </div>
+                                    <div class='ps-post__bottom'>
+                                        <p>$r[jam], ".tgl_indo($r['tanggal']).", Oleh. <a href='#'> $r[nama_lengkap]</a></p>
+                                    </div>
+                                </div>
+                            </div>";
+                        }
+                    ?>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Peringkat Penulis</h4>
+                            <span class="border-center-right"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Berita Lainnya</h4>
+                            <span class="border-center-right"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer-row">
+                <div class="col-md-12">
+                    <hr>
+                    <a href="#">Lihat Semua Berita</a>
                 </div>
             </div>
         </div>

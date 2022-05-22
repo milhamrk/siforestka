@@ -52,6 +52,7 @@ class Main extends CI_Controller {
 		
 		$row = $this->db->query("SELECT maps FROM identitas where id_identitas='1'")->row_array();
 		$maps = explode('|',$row['maps']);
+		$data['berita'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',0,5);
 		$data['maps'] = $maps[0];
 		if ($maps[0]!=''){
 			$url1 = 'https://tripay.co.id/api/v2/pembelian/operator/';

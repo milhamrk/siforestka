@@ -948,6 +948,241 @@
                 text-decoration:underline;
                 padding:0 35px;
             }
+
+            #filtersubmit {
+                position: relative;
+                z-index: 1;
+                left: -30px;
+                top: 9px;
+                color: #7B7B7B;
+                cursor: pointer;
+                width: 0;
+            }
+
+            #homepage-1 .ps-product-list.specialized .ps-container{
+                background: #fff;
+                margin: 0 85px;
+                border-radius: 9px;
+                padding: 35px 45px;
+                padding-top: 45px;
+            }
+            #homepage-1 .ps-product-list.specialized{
+                background:#000;
+            }
+
+            #homepage-1 .specialized h4{
+                font-size: 26px;
+                font-weight: 200;
+            }
+
+            #homepage-1 .specialized .ps-container > .row:nth-child(2){
+                text-align:center;
+            }
+
+            #homepage-1 .specialized .ps-container > .row:nth-child(2) hr{
+                margin-bottom:25px;
+            }
+
+            .border-center{
+                width: 225px;
+                height: 5px;
+                background: #198A82;
+                content: ' ';
+                margin: 11px 0;
+                border-radius: 0 8px 8px 0;
+                position: relative;
+                display: block;
+                left: -45px;
+            }
+
+            .border-center::after{
+                width: 30%;
+                height: 5px;
+                background: #FFC552;
+                content: ' ';
+                border-radius: 8px;
+                position: absolute;
+                right: -75px;
+            }
+
+            .border-center-right{
+                width: 225px;
+                height: 5px;
+                background: #198A82;
+                content: ' ';
+                margin: 11px 0;
+                border-radius: 0 8px 8px 0;
+                position: relative;
+                display: block;
+            }
+
+            /* Card */
+
+            .card-mean {
+                float: left;
+                padding: 0.7rem;
+                width: 60%;
+                }
+                .card-mean .menu-content {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+                }
+                .card-mean .menu-content::before, .card-mean .menu-content::after {
+                content: '';
+                display: table;
+                }
+                .card-mean .menu-content::after {
+                clear: both;
+                }
+                .card-mean .menu-content li {
+                display: inline-block;
+                }
+                .card-mean .menu-content a {
+                color: #fff;
+                }
+                .card-mean .menu-content span {
+                position: absolute;
+                left: 50%;
+                top: 0;
+                font-size: 10px;
+                font-weight: 700;
+                font-family: 'Open Sans';
+                transform: translate(-50%, 0);
+                }
+                .card-mean .wrapper {
+                background-color: #fff;
+                min-height: 340px;
+                position: relative;
+                overflow: hidden;
+                transition:0.2s;
+                }
+
+                .card-mean .wrapper:hover{
+                    transition:0.2s;
+                    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
+                }
+
+                /* .card-mean .wrapper:hover .data { */
+                .card-mean .wrapper .data {
+                transform: translateY(0);
+                }
+                .card-mean .data {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                transform: translateY(calc(70px + 1em));
+                transition: transform 0.3s;
+                }
+                .card-mean .data .content {
+                padding: 1em;
+                position: relative;
+                z-index: 1;
+                }
+                .card-mean .author {
+                font-size: 12px;
+                }
+                .card-mean .title {
+                margin-top: 10px;
+                }
+                .card-mean .text {
+                height: 70px;
+                margin: 0;
+                }
+                .card-mean input[type='checkbox'] {
+                display: none;
+                }
+                .card-mean input[type='checkbox']:checked + .menu-content {
+                transform: translateY(-60px);
+                }
+                
+                .card-2 .wrapper {
+                /* background: url(http://localhost/siforestika/asset/foto_berita/279073209_357974409694920_2037136998432395723_n.jpg) center / cover no-repeat; */
+                background: url(http://localhost/siforestika/asset/foto_berita/279073209_357974409694920_2037136998432395723_n.jpg) center / cover no-repeat;
+                border-radius:11px;
+                }
+                /* .card-2 .wrapper:hover .menu-content span { */
+                .card-2 .wrapper .menu-content span {
+                transform: translate(-50%, -10px);
+                opacity: 1;
+                }
+
+                .card-2 h1{
+                    font-size:18px;
+                }
+
+                .card-2 .header {
+                color: #fefefe;
+                padding: 1em;
+                }
+                .card-2 .header::before, .card-2 .header::after {
+                content: '';
+                display: table;
+                }
+                .card-2 .header::after {
+                clear: both;
+                }
+                .card-2 .header .date {
+                float: left;
+                font-size: 12px;
+                }
+                .card-2 .menu-content {
+                float: right;
+                }
+                .card-2 .menu-content li {
+                margin: 0 5px;
+                position: relative;
+                }
+                .card-2 .menu-content span {
+                transition: all 0.3s;
+                opacity: 0;
+                }
+                .card-2 .data {
+                color: #fff;
+                position: absolute;
+                content: "";
+                padding:8px;
+                display: block;
+                width: 100%;
+                /* height: 100%; */
+                /* top: 0; */
+                background-image: linear-gradient(transparent, #000);
+                z-index: 0;
+                transform: translateY(calc(70px + 4em));
+                }
+                .card-2 .title a {
+                color: #fff;
+                }
+
+                .card-2 p{
+                    color:#fefefe;
+                }
+
+                .card-2 .button {
+                display: block;
+                width: 100px;
+                margin: 2em auto 1em;
+                text-align: center;
+                font-size: 12px;
+                color: #fff;
+                line-height: 1;
+                position: relative;
+                font-weight: 700;
+                }
+                .card-2 .button::after {
+                content: '\2192';
+                opacity: 0;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translate(0, -50%);
+                transition: all 0.3s;
+                }
+                /* .card-2 .button:hover::after { */
+                .card-2 .button::after {
+                transform: translate(5px, -50%);
+                opacity: 1;
+                }
     </style>
 </head>
 
@@ -1098,11 +1333,11 @@
                     </div>
                     <div class="header__center">
                         <ul class="new_menu">
-                            <li><a href="#">Beranda</a></li>
-                            <li><a href="#">Berita</a></li>
-                            <li><a href="#">Web GIS</a></li>
-                            <li><a href="#">Produk Lokal</a></li>
-                            <li><a href="#">Kontak</a></li>
+                            <li><a href="<?php echo base_url() ?>">Beranda</a></li>
+                            <li><a href="<?php echo base_url() ?>berita">Berita</a></li>
+                            <li><a href="<?php echo base_url() ?>peta/dishut">Web GIS</a></li>
+                            <li><a href="<?php echo base_url() ?>produk">Produk Lokal</a></li>
+                            <li><a href="<?php echo base_url() ?>halaman/detail/kontak-kami">Kontak</a></li>
                         </ul>
 						<!--
                         <p class='populer'><b>Trending :</b> 
@@ -1119,8 +1354,8 @@
 						-->
                     </div>
                     <div class="header__right">
-                        <form class="ps-form--quick-search" action="<?php echo base_url() ?>produk" method="GET">
-                            <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Search..." autocomplete='off' required>
+                        <form class="ps-form--quick-search"  id="filter" action="<?php echo base_url() ?>produk" method="GET">
+                            <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Search..." autocomplete='off' required><i class="fa fa-search" id="filtersubmit" aria-hidden="true"></i>
                         </form>
                         <div class="header__actions">
                             <!--<a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a>-->
@@ -1736,6 +1971,10 @@
                 .split('').reverse().join('');
             return duit;
         }
+
+        $('#filtersubmit').click(function() {
+            $("#filter").submit();
+        });
 
 
         $(function() {
