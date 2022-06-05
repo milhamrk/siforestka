@@ -1146,7 +1146,7 @@
                 width: 100%;
                 /* height: 100%; */
                 /* top: 0; */
-                background-image: linear-gradient(transparent, #000);
+                background-image: linear-gradient(transparent, 20%, #000);
                 z-index: 0;
                 transform: translateY(calc(70px + 4em));
                 }
@@ -1183,6 +1183,79 @@
                 transform: translate(5px, -50%);
                 opacity: 1;
                 }
+
+                .boxed-writer {
+                    display: flex;
+                    align-items:center;
+                    padding:15px 0;
+                    border-bottom:0.1px solid #eee;
+                }
+
+                .boxed-writer img{
+                    width: 50px;
+                    border-radius: 30px;
+                }
+
+                .boxed-writer span{
+                    margin-left: 13px;
+                    font-size: 17px;
+                }
+
+                .boxed-writer:last-child{
+                    border:none;
+                    margin-bottom:25px;
+                }
+
+                .boxed-writer:first-child{
+                    margin-top:25px;
+                }
+
+                #homepage-1 .specialized .home-news h4{
+                    font-weight:200;
+                    font-size:19px;
+                }
+
+                #homepage-1 .specialized .home-news{
+                    margin:25px 0;
+                }
+
+                .nav-pills .nav-item a{
+                    color: #777;
+                    font-weight: 100;
+                }
+
+                .nav-pills .nav-item a:hover{
+                    text-decoration:none !important;
+                }
+
+                .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+                    color:#000;
+                    /* font-weight:400; */
+                    background:transparent;
+                }
+
+                .nav-pills{
+                    display:table;
+                    margin:0 auto !important;
+                }
+
+                .nav-pills .nav-item{
+                    display:inline-block;
+                    margin:0 15px;
+                }
+
+                .nav-link.show::after{
+                    content: '';
+                    position: absolute;
+                    bottom: -3px;
+                    left: 0;
+                    right: 0;
+                    background: #01826F;
+                    height: 3px;
+                    border-radius: 10px;
+                }
+
+
     </style>
 </head>
 
@@ -1377,7 +1450,7 @@
 
     echo $contents;
     if(empty($this->uri->segment('1'))){
-        echo '<div class="mt-50">
+        echo '<div class="mt-50" style="margin:0">
         <div class="top-footer">
             <p>Link Terkait:</p>
             <ul>

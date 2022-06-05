@@ -96,6 +96,14 @@ class Model_utama extends CI_model{
         return $this->db->query($cari);
     }
 
+    function penulis(){
+        $q = "select nama_lengkap, count(berita.id_berita) as jumlah_post from users
+        left join berita on users.username = berita.username
+        group by nama_lengkap, berita.username
+        order by 2 desc limit 3";
+        return $this->db->query($q);
+    }
+
     public function insert($table,$data){
         return $this->db->insert($table, $data);
     }
