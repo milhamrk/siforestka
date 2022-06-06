@@ -3034,7 +3034,7 @@ textarea.form-control {
   display: block;
   margin: 0 0 20px;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 200;
 }
 
 .ps-post .ps-post__content {
@@ -3075,7 +3075,7 @@ textarea.form-control {
 }
 
 .ps-post--small-thumbnail .ps-post__meta a:after {
-  content: ',';
+  /* content: ','; */
 }
 
 .ps-post--small-thumbnail .ps-post__meta a:last-child:after {

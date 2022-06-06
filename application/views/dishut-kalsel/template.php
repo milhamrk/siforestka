@@ -98,6 +98,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>asset/uploadfile.css">
     <script type="text/javascript" src="<?php echo base_url(); ?>template/<?php echo template(); ?>/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js"></script>
     <script src="<?php echo base_url(); ?>asset/phpmu_scripts.js"></script>
     
@@ -128,6 +129,7 @@
         fbq('init', '<?= config('facebook_pixel'); ?>');
         fbq('track', 'PageView');
     </script>
+
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=<?= config('facebook_pixel'); ?>&ev=PageView&noscript=1"
     /></noscript>
@@ -1255,7 +1257,29 @@
                     border-radius: 10px;
                 }
 
+                .box-before-1{
+                    background: rgba(255,255,255,0.5);
+                    width: 1100px;
+                    height: 125px;
+                    position: absolute;
+                    top: -28px;
+                    border-radius: 12px;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                }
 
+                .box-before-2{
+                    background: rgba(255,255,255,0.25);
+                    width: 800px;
+                    height: 125px;
+                    position: absolute;
+                    top: -51px;
+                    border-radius: 12px;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                }
     </style>
 </head>
 
@@ -2281,7 +2305,72 @@
                     });
                 }
                 changeNavsThump();
+                
             });
+    </script>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: 'Rehapdas IPPKH',
+                    data: [14, 23, 45, 71, 32, 35, 40],
+                    fill: false,
+                    borderColor: '#FF7A00',
+                    tension: 0.1
+                },{
+                    label: 'IUPHHK_HTI',
+                    data: [65, 59, 65, 81, 56, 56, 20],
+                    fill: false,
+                    borderColor: '#7E36F3',
+                    tension: 0.1
+                },{
+                    label: 'RHL KTH',
+                    data: [35, 55, 60, 82, 51, 57, 30],
+                    fill: false,
+                    borderColor: '#EFAEE5',
+                    tension: 0.1
+                },{
+                    label: 'Perhutanan Sosial',
+                    data: [55, 53, 75, 73, 53, 58, 10],
+                    fill: false,
+                    borderColor: '#C5EDFF',
+                    tension: 0.1
+                },{
+                    label: 'Penghijauan Lingkungan',
+                    data: [85, 50, 80, 85, 52, 51, 50],
+                    fill: false,
+                    borderColor: '#11BBA3',
+                    tension: 0.1
+                }]
+            },options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Revolusi Hijau Update',
+                        padding: {
+                            top: 10,
+                            bottom: 30
+                        },
+                        font: {
+                            size: 24,
+                            weight: 100,
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                    usePointStyle: true,
+                    boxWidth: 6
+                    }
+                }
+            }
+        });
+        
     </script>
 
     <!-- Go to www.addthis.com/dashboard to customize your tools  

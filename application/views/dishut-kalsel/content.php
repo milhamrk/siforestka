@@ -307,8 +307,12 @@
                 </div>
             </div>
         </div>
-        <div class="mt-40"></div>
-        <div class="ps-container">
+        <div class="mt-100"></div>
+        <div class="styled-box" style="position:relative;z-index:1;">
+            <div class="box-before-1"></div>
+            <div class="box-before-2"></div>
+        </div>
+        <div class="ps-container" style="position:relative;z-index:2;">
             <div class="row">
                 <div class="col-md-12">
                     <div class="wrap-center">
@@ -327,13 +331,100 @@
                             </li>
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-aksi" role="tabpanel" aria-labelledby="pills-aksi-tab">halo kawan</div>
-                            <div class="tab-pane fade" id="pills-sosialisasi" role="tabpanel" aria-labelledby="pills-sosialisasi-tab">disini marco</div>
-                            <div class="tab-pane fade" id="pills-edukasi" role="tabpanel" aria-labelledby="pills-edukasi-tab">dan marlo</div>
-                            <div class="tab-pane fade" id="pills-persuasif" role="tabpanel" aria-labelledby="pills-persuasif-tab">dan marlo</div>
+                            <div class="tab-pane fade show active" id="pills-aksi" role="tabpanel" aria-labelledby="pills-aksi-tab">
+                                <div class="mt-20" style="padding:20px;background:#ECF0F1;border-radius:12px;">
+                                    <canvas id="myChart" width="400" height="350" style="background:#fff;border-radius:12px;padding:25px;"></canvas>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-sosialisasi" role="tabpanel" aria-labelledby="pills-sosialisasi-tab"></div>
+                            <div class="tab-pane fade" id="pills-edukasi" role="tabpanel" aria-labelledby="pills-edukasi-tab"></div>
+                            <div class="tab-pane fade" id="pills-persuasif" role="tabpanel" aria-labelledby="pills-persuasif-tab"></div>
                         </div>
                     </div>
 
+                </div>
+            </div>
+            <div class="row mt-30">
+                <div class="col-md-6">
+                    <div class="ps-blog__left">
+                    <?php 
+                        function rand_color() {
+                            return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+                        }
+
+                        foreach ($aksi->result_array() as $r) {	
+                            $judul = $r['judul']; 
+                            $total_komentar = $this->model_utama->view_where('komentar',array('id_berita' => $r['id_berita']))->num_rows();
+                            
+                            echo "<div class='ps-post ps-post--small-thumbnail'>
+                                <div class='ps-post__thumbnail' style='max-width:230px;'><a class='ps-post__overlay' href='".base_url()."berita/detail/$r[judul_seo]'></a>";
+                                    if ($r['gambar'] == ''){
+                                        echo "<img style='border-radius:8px;' src='".base_url()."asset/foto_berita/no-image.jpg' alt='no-image.jpg' /></a>";
+                                    }else{
+                                        echo "<img style='border-radius:8px;' src='".base_url()."asset/foto_berita/$r[gambar]' alt='$r[gambar]' /></a>";
+                                    }
+                                echo "</div>
+                                <div class='ps-post__content' style='text-align:left;'>
+                                    <div class='ps-post__top'>
+                                        <div class='ps-post__meta'>";
+                                        $tags = (explode(",",$r['tag']));
+                                        $hitung = count($tags);
+                                        for ($x=0; $x<=$hitung-1; $x++) {
+                                            if ($tags[$x] != ''){
+                                                $final_tags = str_replace("-"," ",$tags[$x]);
+                                                echo "<a style='text-transform:capitalize;color:".rand_color()."' href='".base_url()."tag/detail/$tags[$x]'>$final_tags</a>";
+                                            }
+                                            break;
+                                        }
+                                        echo "</div><a class='ps-post__title' href='".base_url()."berita/detail/$r[judul_seo]'>$judul</a>
+                                    </div>
+                                    <div class=''>
+                                        <p>".tgl_indo($r['tanggal'])." oleh <a href='#'> $r[nama_lengkap]</a></p>
+                                    </div>
+                                </div>
+                            </div>";
+                        }
+                    ?>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="ps-blog__left">
+                        <?php 
+
+                            foreach ($aksi_dua->result_array() as $r) {	
+                                $judul = $r['judul']; 
+                                $total_komentar = $this->model_utama->view_where('komentar',array('id_berita' => $r['id_berita']))->num_rows();
+                                
+                                echo "<div class='ps-post ps-post--small-thumbnail'>
+                                    <div class='ps-post__thumbnail' style='max-width:230px;'><a class='ps-post__overlay' href='".base_url()."berita/detail/$r[judul_seo]'></a>";
+                                        if ($r['gambar'] == ''){
+                                            echo "<img style='border-radius:8px;' src='".base_url()."asset/foto_berita/no-image.jpg' alt='no-image.jpg' /></a>";
+                                        }else{
+                                            echo "<img style='border-radius:8px;' src='".base_url()."asset/foto_berita/$r[gambar]' alt='$r[gambar]' /></a>";
+                                        }
+                                    echo "</div>
+                                    <div class='ps-post__content' style='text-align:left;'>
+                                        <div class='ps-post__top'>
+                                            <div class='ps-post__meta'>";
+                                            $tags = (explode(",",$r['tag']));
+                                            $hitung = count($tags);
+                                            for ($x=0; $x<=$hitung-1; $x++) {
+                                                if ($tags[$x] != ''){
+                                                    $final_tags = str_replace("-"," ",$tags[$x]);
+                                                    echo "<a style='text-transform:capitalize;color:".rand_color()."' href='".base_url()."tag/detail/$tags[$x]'>$final_tags</a>";
+                                                }
+                                                break;
+                                            }
+                                            echo "</div><a class='ps-post__title' href='".base_url()."berita/detail/$r[judul_seo]'>$judul</a>
+                                        </div>
+                                        <div class=''>
+                                            <p>".tgl_indo($r['tanggal'])." oleh <a href='#'> $r[nama_lengkap]</a></p>
+                                        </div>
+                                    </div>
+                                </div>";
+                            }
+                        ?>
+                        </div>
                 </div>
             </div>
         </div>
