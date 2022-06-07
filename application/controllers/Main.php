@@ -52,6 +52,15 @@ class Main extends CI_Controller {
 		
 		$row = $this->db->query("SELECT maps FROM identitas where id_identitas='1'")->row_array();
 		$maps = explode('|',$row['maps']);
+		$data['penulis'] = $this->model_utama->penulis();
+		$data['berita'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',0,5);
+		$data['berita_sisi'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',5,3);
+
+		$data['aksi'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',0,3);
+		$data['aksi_dua'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',3,3);
+		$data['sosialisasi'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',6,6);
+		$data['edukasi'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',12,6);
+		$data['persuasif'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',18,6);
 		$data['maps'] = $maps[0];
 		if ($maps[0]!=''){
 			$url1 = 'https://tripay.co.id/api/v2/pembelian/operator/';
