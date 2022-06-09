@@ -1,3 +1,23 @@
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+            </div>
+
+            <div class="modal-body">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/7pvci1hwAx8?rel=0&amp;controls=0" "frameborder="0" allowfullscreen autoplay></iframe>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div id="homepage-1">
     
 
@@ -15,16 +35,22 @@
                     <h2>Tabalong</h2>
                     <div class="border-slide"> </div>
                     <p>Portal berita, informasi, komunikasi, dan edukasi  masyarakat terkait kondisi hutan KPH Tabalong, Kalimantan Selatan.</p>
+                    <div class="sticky-play">
+                        <a data-toggle="modal"  data-target="#myModal"><img src="<?= base_url() ?>asset/images/play.svg" alt="" /></a>
+                    </div>
                     </div>
                 </div>
                 <div class='slide'>
                         <img class='owl-item-bg' src='<?= base_url()."asset/images/background_header.png" ?>'>
-                        <div class='slide-content'>
+                    <div class='slide-content'>
                         <div class='overlay'></div>
-                        <h3>Kesatuan Pengelolaan Hutan (KPH)</h3>
-                        <h2>Tabalong</h2>
-                        <div class="border-slide"> </div>
-                        <p>Portal berita, informasi, komunikasi, dan edukasi  masyarakat terkait kondisi hutan KPH Tabalong, Kalimantan Selatan.</p>
+                            <h3>Kesatuan Pengelolaan Hutan (KPH)</h3>
+                            <h2>Tabalong</h2>
+                            <div class="border-slide"> </div>
+                            <p>Portal berita, informasi, komunikasi, dan edukasi  masyarakat terkait kondisi hutan KPH Tabalong, Kalimantan Selatan.</p>
+                            <div class="sticky-play">
+                            <a data-toggle="modal"  data-target="#myModal"><img style="height:45px;" src="<?= base_url() ?>asset/images/play.svg" alt="" /></a>
+                            </div>
                         </div>
                     </div>
                 </div>

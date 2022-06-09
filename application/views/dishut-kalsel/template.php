@@ -1280,6 +1280,46 @@
                     right: 0;
                     margin: 0 auto;
                 }
+
+                .sticky-play{
+                    position: relative;
+                    margin-left: 775px;
+                    margin-top: -85px;
+                }
+
+                .sticky-play a{
+                    width: 75px;
+                    height: 75px;
+                    content: ' ';
+                    display: block;
+                    background: rgba(255,255,255,0.25);
+                    border-radius: 50%;
+                }
+
+                .sticky-play a::before{
+                    width: 115px;
+                    height: 115px;
+                    content: ' ';
+                    display: block;
+                    background: rgba(255,255,255,0.15);
+                    border-radius: 50%;
+                    margin: auto;
+                    top: 0;
+                    bottom: 0;
+                    position: absolute;
+                    left: -18px;
+                    right: 0;
+                }
+
+                .sticky-play a img{
+                    height: 45px;
+                    margin: auto;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                }
     </style>
 </head>
 
@@ -1472,7 +1512,18 @@
         include "mobile/home.php";
     }
 
-    echo $contents;
+    if ($this->uri->segment('1') != 'main' && $this->uri->segment('1')) {
+        ?>
+        <div class="mt-80"></div>
+        <div class="heading-content">
+            <p>KPH Kalimantan Selatan</p>
+            <h2>Detail Produk</h2>
+        </div>
+        <?php
+        echo $contents;
+    }else{
+        echo $contents;
+    }
     if(empty($this->uri->segment('1'))){
         echo '<div class="mt-50" style="margin:0">
         <div class="top-footer">
@@ -2310,6 +2361,9 @@
     </script>
 
     <script>
+        <?php 
+             if ($this->uri->segment('1') == 'main' || empty($this->uri->segment('1'))) {
+        ?>
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'line',
@@ -2370,7 +2424,7 @@
                 }
             }
         });
-        
+        <?php } ?>
     </script>
 
     <!-- Go to www.addthis.com/dashboard to customize your tools  
