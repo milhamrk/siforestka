@@ -963,13 +963,14 @@
 
             #homepage-1 .ps-product-list.specialized .ps-container{
                 background: #fff;
-                margin: 0 85px;
+                margin: 0 auto;
                 border-radius: 9px;
                 padding: 35px 45px;
                 padding-top: 45px;
             }
             #homepage-1 .ps-product-list.specialized{
                 background:#000;
+                padding:55px;
             }
 
             #homepage-1 .specialized h4{
@@ -1320,6 +1321,13 @@
                     right: 0;
                     bottom: 0;
                 }
+
+                .heading-content{
+                    background-image: url('<?= base_url() ?>asset/images/ornamen.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
     </style>
 </head>
 
@@ -1517,7 +1525,9 @@
         <div class="mt-80"></div>
         <div class="heading-content">
             <p>KPH Kalimantan Selatan</p>
-            <h2>Detail Produk</h2>
+            <h2>
+                <?= ($this->uri->segment('1') == 'berita' and $this->uri->segment('2') == 'detail') ? 'Detail Berita' : (($this->uri->segment('1') == 'produks' and $this->uri->segment('2') == '') ? 'Semua Produk' : $title) ?>
+            </h2>
         </div>
         <?php
         echo $contents;

@@ -18,7 +18,7 @@
 
     </div>
 </div>
-<div id="homepage-1">
+<div id="homepage-1" style="background:#000;">
     
 
     <div class="ps-home-banner ps-home-banner--1">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class='slide'>
-                        <img class='owl-item-bg' src='<?= base_url()."asset/images/background_header.png" ?>'>
+                        <img class='owl-item-bg' src='<?= base_url()."asset/images/bg-2.jpg" ?>'>
                     <div class='slide-content'>
                         <div class='overlay'></div>
                             <h3>Kesatuan Pengelolaan Hutan (KPH)</h3>
