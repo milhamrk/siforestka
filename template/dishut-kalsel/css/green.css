@@ -3030,6 +3030,20 @@ textarea.form-control {
   margin-right: 10px;
 }
 
+/* Heading Content */
+
+.heading-content p, h2{
+  margin:0;
+  padding:0;
+  color:#fff;
+}
+
+.heading-content{
+  background: #404040;
+  text-align: center;
+  padding:60px;
+}
+
 .ps-post .ps-post__title {
   display: block;
   margin: 0 0 20px;
@@ -7523,7 +7537,7 @@ textarea.form-control {
 }
 
 .owl-carousel .owl-item img {
-  width: auto;
+  width: 100%;
 }
 
 .owl-carousel .ps-product {
