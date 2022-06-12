@@ -1328,6 +1328,45 @@
                     background-repeat: no-repeat;
                     background-position: center;
                 }
+
+                /* Responsive */
+
+                @media only screen and (max-width: 600px) {
+                    .owl-next, .owl-prev{
+                        display: none !important;
+                    }
+                    .slide-content{
+                        left:15%;
+                        width:90%;
+                    }
+                    .border-slide::after{
+                        right:-55px;
+                    }
+                    .ps-home-ads .ps-collection{
+                        margin:0;
+                    }
+                    .berita-section .sample .row .card-2{
+                        width:100% !important;
+                    }
+                    .berita-section .sample .card-mean .text{
+                        height:100px;
+                    }
+                    .top-footer ul li{
+                        display: block;
+                        padding:5px 0;
+                    }
+                    .top-footer p, .top-footer ul{
+                        margin:0;
+                        padding:0;
+                        display:block;
+                    }
+                    .ps-footer .ps-container aside{
+                        width:100% !important;
+                        display: block;
+                        flex-basis:100%;
+                        max-width:100%;
+                    }
+                }
     </style>
 </head>
 
