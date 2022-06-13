@@ -1366,6 +1366,22 @@
                         flex-basis:100%;
                         max-width:100%;
                     }
+                    #homepage-1 .ps-product-list.specialized{
+                        padding:15px;
+                    }
+                    .ps-home-ads{
+                        padding-left:15px;
+                        padding-right:15px;
+                    }
+                    .boxed-white{
+                        padding:25px 15px !important;
+                    }
+                    .boxed-white-before-1,.boxed-white-before-2,.boxed-white-before-3,.box-before-1,.box-before-2{
+                        display:none;
+                    }
+                    .top-footer{
+                        width:100%;
+                    }
                 }
     </style>
 </head>
