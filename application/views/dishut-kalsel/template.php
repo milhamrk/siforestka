@@ -1328,6 +1328,61 @@
                     background-repeat: no-repeat;
                     background-position: center;
                 }
+
+                /* Responsive */
+
+                @media only screen and (max-width: 600px) {
+                    .owl-next, .owl-prev{
+                        display: none !important;
+                    }
+                    .slide-content{
+                        left:15%;
+                        width:90%;
+                    }
+                    .border-slide::after{
+                        right:-55px;
+                    }
+                    .ps-home-ads .ps-collection{
+                        margin:0;
+                    }
+                    .berita-section .sample .row .card-2{
+                        width:100% !important;
+                    }
+                    .berita-section .sample .card-mean .text{
+                        height:100px;
+                    }
+                    .top-footer ul li{
+                        display: block;
+                        padding:5px 0;
+                    }
+                    .top-footer p, .top-footer ul{
+                        margin:0;
+                        padding:0;
+                        display:block;
+                    }
+                    .ps-footer .ps-container aside{
+                        width:100% !important;
+                        display: block;
+                        flex-basis:100%;
+                        max-width:100%;
+                    }
+                    #homepage-1 .ps-product-list.specialized{
+                        padding:15px;
+                    }
+                    .ps-home-ads{
+                        padding-left:15px;
+                        padding-right:15px;
+                    }
+                    .boxed-white{
+                        padding:25px 15px !important;
+                    }
+                    .boxed-white-before-1,.boxed-white-before-2,.boxed-white-before-3,.box-before-1,.box-before-2,.no-mobile{
+                        display:none;
+                    }
+                    .top-footer{
+                        width:100%;
+                    }
+                }
     </style>
 </head>
 
@@ -1522,7 +1577,7 @@
 
     if ($this->uri->segment('1') != 'main' && $this->uri->segment('1')) {
         ?>
-        <div class="mt-80"></div>
+        <div class="mt-80 no-mobile"></div>
         <div class="heading-content">
             <p>KPH Kalimantan Selatan</p>
             <h2>
@@ -1534,7 +1589,7 @@
     }else{
         echo $contents;
     }
-    if(empty($this->uri->segment('1'))){
+    if(empty($this->uri->segment('1')) || $this->uri->segment('1') == "main"){
         echo '<div class="mt-50" style="margin:0">
         <div class="top-footer">
             <p>Link Terkait:</p>
@@ -1547,7 +1602,7 @@
         </div>
     </div>';
     }else{
-        echo '<div style="margin-top:50px"></div><div class="top-footer" style="bottom:430px;">
+        echo '<div style="margin-top:50px"></div><div class="top-footer no-mobile" style="bottom:430px;">
         <p>Link Terkait:</p>
         <ul>
             <li><a href="#">kalselprov.go.id</a></li>

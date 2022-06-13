@@ -13,36 +13,11 @@
                 <?php 
                 $cek_keranjang = $this->db->query("SELECT a.*, b.*, c.nama_reseller FROM rb_penjualan_temp a JOIN rb_produk b ON a.id_produk=b.id_produk JOIN rb_reseller c ON b.id_reseller=c.id_reseller where a.session='".$this->session->idp."' ORDER BY id_penjualan_detail ASC");
                 $total = $this->db->query("SELECT sum((a.harga_jual-a.diskon)*a.jumlah) as total, sum(b.berat*a.jumlah) as total_berat FROM `rb_penjualan_temp` a JOIN rb_produk b ON a.id_produk=b.id_produk where a.session='".$this->session->idp."'")->row_array();
-                echo "<div class='ps-cart--mini'><a class='header__extra' href='#'><i class='icon-bag2'></i><span><i class='show_cart_count'></i></span></a>
-                        <div class='ps-cart__content'>
-                            <div class='ps-cart__items'>
-                                <div class='show_cart'></div>
-                            </div>
-                            <div class='ps-cart__footer'>
-                                <div class='show_cart_button'></div>
-                            </div>
-                        </div>
-                    </div>";
+                echo "";
                 ?>
 
                 <div class="ps-block--user-header">
-                    <?php if ($this->session->level == 'konsumen') { ?>
-                        <div class="ps-block__left">
-                            <a class='ps-toggle--sidebar' href='#search-sidebar'><i class="icon-user"></i></a>
-                        </div>
-                        <div class="ps-block__right">
-                            <a href="<?php echo base_url(); ?>members/profile">Akun</a> 
-                            <a href="<?php echo base_url(); ?>auth/logout">Logout</a>
-                        </div>
-                    <?php }else{ ?>
-                        <div class="ps-block__left">
-                            <a href='<?php echo base_url(); ?>auth/login'><i class="icon-user"></i></a>
-                        </div>
-                        <div class="ps-block__right">
-                            <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">Login</a> 
-                            <a href="<?php echo base_url(); ?>auth/login">Register</a>
-                        </div>
-                    <?php } ?>
+                    
                 </div>
             </div>
         </div>

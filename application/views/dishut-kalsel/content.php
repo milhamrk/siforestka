@@ -58,37 +58,7 @@
         </div>
     </div>
 
-    <div class="ps-top-categories d-block d-sm-none" style='margin-top:20px'>
-        <!--
-	<div class="ps-container">
-            <div class="row" style='margin-right:10px; margin-left:10px;'>
-                <?php 
-                    $top_kategori = $this->db->query("SELECT * FROM (SELECT a.*, b.jumlah FROM
-                                        (SELECT * FROM rb_kategori_produk) as a LEFT JOIN
-                                        (SELECT z.id_kategori_produk, COUNT(*) jumlah FROM rb_penjualan_detail y JOIN rb_produk z ON y.id_produk=z.id_produk GROUP BY z.id_kategori_produk HAVING COUNT(z.id_kategori_produk)) as b on a.id_kategori_produk=b.id_kategori_produk) as x ORDER BY x.jumlah DESC LIMIT 8");
-                    foreach($top_kategori->result_array() as $row){
-                    if ($row['icon_kode']!=''){
-                        $icon = "<i style='font-size:36px' class='$row[icon_kode]'></i>";
-                    }elseif ($row['icon_image']!=''){
-                        $icon = "<img style='width:55px; height:55px' src='".base_url()."asset/foto_produk/$row[icon_image]'>";
-                    }else{
-                        $icon = "";
-                    }
-                        echo "<div class='col-xl-2 col-lg-3 col-md-4 col-sm-4 col-3' style='padding-right:10px; padding-left:10px;'>
-                                <div class='ps-block--category' style='padding:30px 10px; border-radius:20px; border:1px solid #fff; color:#000; margin-bottom:50px;'>
-                                    <a style='margin-top:15px; height:80%' class='ps-block__overlay' href='".base_url()."produk/kategori/$row[kategori_seo]'>
-                                        $icon <p style='font-size:14px; padding-top:0px; line-height:1.1em'>$row[nama_kategori]</p>
-                                    </a>
-                                </div>
-                              </div>";
-                    }
-                ?>
-            </div>
-        </div>
-	-->
-	<center><a style='margin-top:20px' class="ps-toggle--sidebar btn-custom" href="#navigation-mobile"><i class="icon-list4"></i><span> Tampilkan Semua Kategori</span></a></center><br>
-        
-    </div>
+    
 
 <!-- iklan tengah -->
  
