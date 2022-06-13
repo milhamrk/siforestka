@@ -1376,7 +1376,7 @@
                     .boxed-white{
                         padding:25px 15px !important;
                     }
-                    .boxed-white-before-1,.boxed-white-before-2,.boxed-white-before-3,.box-before-1,.box-before-2{
+                    .boxed-white-before-1,.boxed-white-before-2,.boxed-white-before-3,.box-before-1,.box-before-2,.no-mobile{
                         display:none;
                     }
                     .top-footer{
@@ -1577,7 +1577,7 @@
 
     if ($this->uri->segment('1') != 'main' && $this->uri->segment('1')) {
         ?>
-        <div class="mt-80"></div>
+        <div class="mt-80 no-mobile"></div>
         <div class="heading-content">
             <p>KPH Kalimantan Selatan</p>
             <h2>
@@ -1589,7 +1589,7 @@
     }else{
         echo $contents;
     }
-    if(empty($this->uri->segment('1'))){
+    if(empty($this->uri->segment('1')) || $this->uri->segment('1') == "main"){
         echo '<div class="mt-50" style="margin:0">
         <div class="top-footer">
             <p>Link Terkait:</p>
@@ -1602,7 +1602,7 @@
         </div>
     </div>';
     }else{
-        echo '<div style="margin-top:50px"></div><div class="top-footer" style="bottom:430px;">
+        echo '<div style="margin-top:50px"></div><div class="top-footer no-mobile" style="bottom:430px;">
         <p>Link Terkait:</p>
         <ul>
             <li><a href="#">kalselprov.go.id</a></li>
