@@ -8,7 +8,7 @@
             </div>
 
             <div class="modal-body">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/7pvci1hwAx8?rel=0&amp;controls=0" "frameborder="0" allowfullscreen autoplay></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VwmTVOOp0go?rel=0&amp;controls=0" "frameborder="0" allowfullscreen autoplay></iframe>
             </div>
 
             <div class="modal-footer">
@@ -328,9 +328,6 @@
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-aksi" role="tabpanel" aria-labelledby="pills-aksi-tab">
-                                <div class="mt-20" style="padding:20px;background:#ECF0F1;border-radius:12px;">
-                                    <canvas id="myChart" width="400" height="350" style="background:#fff;border-radius:12px;padding:25px;"></canvas>
-                                </div>
                             </div>
                             <div class="tab-pane fade" id="pills-sosialisasi" role="tabpanel" aria-labelledby="pills-sosialisasi-tab"></div>
                             <div class="tab-pane fade" id="pills-edukasi" role="tabpanel" aria-labelledby="pills-edukasi-tab"></div>
