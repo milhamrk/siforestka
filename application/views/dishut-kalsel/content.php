@@ -8,7 +8,7 @@
             </div>
 
             <div class="modal-body">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/7pvci1hwAx8?rel=0&amp;controls=0" "frameborder="0" allowfullscreen autoplay></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VwmTVOOp0go?rel=0&amp;controls=0" "frameborder="0" allowfullscreen autoplay></iframe>
             </div>
 
             <div class="modal-footer">
