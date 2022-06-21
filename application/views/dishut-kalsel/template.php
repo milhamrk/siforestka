@@ -1554,12 +1554,13 @@
 						-->
                     </div>
                     <div class="header__right">
-                        <form class="ps-form--quick-search"  id="filter" action="<?php echo base_url() ?>produk" method="GET">
-                            <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Search..." autocomplete='off' required><i class="fa fa-search" id="filtersubmit" aria-hidden="true"></i>
-                        </form>
+                        
                         <div class="header__actions">
-                            <!--<a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a>-->
-                            
+                            <form class="ps-form--quick-search" style='margin:0 0px;' id="filter" action="<?php echo base_url() ?>produk" method="GET">
+                                <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Search..." autocomplete='off' required><i class="fa fa-search" id="filtersubmit" aria-hidden="true"></i>
+                            </form>
+                            <!-- <a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a> -->
+                            <a class="header__extra" href="#" data-toggle="modal" data-target=".bd-example-modal-lg" style='margin:0 10px;width:20px;'><i style='font-size:20px;' class="icon-user"></i></a>
                         </div>
                     </div>
                 </div>

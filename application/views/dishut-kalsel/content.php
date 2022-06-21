@@ -195,6 +195,33 @@
     <div class="ps-product-list ps-clothings specialized">
         <div class="ps-container">
             <div class="row">
+                <div class="col-md-6">
+                    <h4>Produk</h4>
+                    <span class="border-center"></span>
+                    <div class="berita-section"></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Opini Publik</h4>
+                            <span class="border-center-right"></span>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer-row">
+                <div class="col-md-12">
+                    <hr>
+                    <a href="<?= base_url() ?>produk">Lihat Semua Produk</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ps-product-list ps-clothings specialized">
+        <div class="ps-container">
+            <div class="row">
                 <div class="col-md-8">
                     <h4>Berita Terbaru</h4>
                     <span class="border-center"></span>
