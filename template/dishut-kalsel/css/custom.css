@@ -259,6 +259,7 @@ max-width: 70%;
     border-top:1px solid #26901b;
     border-right:1px solid #26901b;
     border-left:1px solid #26901b;
+    border-radius: 25px 0 0 0;
 }
 
 .product__header{

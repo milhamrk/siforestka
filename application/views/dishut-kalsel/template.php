@@ -1590,7 +1590,8 @@
     }else{
         echo $contents;
     }
-    if(empty($this->uri->segment('1')) || $this->uri->segment('1') == "main"){
+    if($this->uri->segment('1') == "auth" || $this->uri->segment('1') == "members"){}
+    else if(empty($this->uri->segment('1')) || $this->uri->segment('1') == "main"){
         echo '<div class="mt-50" style="margin:0">
         <div class="top-footer">
             <p>Link Terkait:</p>
@@ -1881,6 +1882,7 @@
                             // if(data==true){
                                 show_cart();
                                 $(".m1keranjangx").hide().load(" .m1keranjangx").fadeIn();
+                                window.location.replace("<?= site_url('produk/keranjang') ?>");
                             // }else{
                             //     $('#Modal_Notif').modal('show');
                             //     $('#error_notif').html(data.pesan);

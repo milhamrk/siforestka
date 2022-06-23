@@ -51,6 +51,8 @@ class Main extends CI_Controller {
 										(SELECT id_kategori_produk, COUNT(*) produk FROM rb_produk GROUP BY id_kategori_produk HAVING COUNT(id_kategori_produk)) as b on a.id_kategori_produk=b.id_kategori_produk ORDER BY RAND()) as c WHERE produk>=6 ORDER BY c.id_kategori_produk DESC LIMIT 5");
 		
 		$row = $this->db->query("SELECT maps FROM identitas where id_identitas='1'")->row_array();
+		$data['record'] = $this->db->query("SELECT a.*, b.nama_reseller, c.nama_kota FROM rb_produk a LEFT JOIN rb_reseller b ON a.id_reseller=b.id_reseller
+									LEFT JOIN rb_kota c ON b.kota_id=c.kota_id where a.id_reseller!='0' AND a.aktif='Y' ORDER BY a.id_produk DESC LIMIT 0,12");
 		$maps = explode('|',$row['maps']);
 		$data['penulis'] = $this->model_utama->penulis();
 		$data['berita'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',0,5);

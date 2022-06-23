@@ -102,13 +102,13 @@
                 $kategori = $this->model_app->view('rb_kategori_produk');
                 foreach ($kategori->result_array() as $rows) {
                     $sub_kategori = $this->db->query("SELECT * FROM rb_kategori_produk_sub where id_kategori_produk='$rows[id_kategori_produk]'");
-                    if ($sub_kategori->num_rows()>=1){
+                    if (@$sub_kategori->num_rows()>=1){
                         echo "<li class='current-menu-item menu-item-has-children has-mega-menu'><a href='".base_url()."produk/kategori/$rows[kategori_seo]'>$rows[nama_kategori]</a> <span class='sub-toggle'></span> ";
                     }else{
                         echo "<li class='current-menu-item '><a href='".base_url()."produk/kategori/$rows[kategori_seo]'>$rows[nama_kategori]</a></li>";
                     }
 
-                    if ($sub_kategori->num_rows()>=1){
+                    if (@$sub_kategori->num_rows()>=1){
                         echo "<div class='mega-menu'>
                             <div class='mega-menu__column'>
                                 <ul class='menu-custom'>";
@@ -139,7 +139,7 @@ if ($this->session->id_konsumen!=''){ ?>
             for ($i=0; $i < count($data); $i++) { 
                 echo "<li class='current-menu-item'><a href='".base_url()."members/".$link[$i]."'>".$data[$i]."</a></li>";
             }
-        echo "<li class='current-menu-item'><a href='" . base_url() . "komplain?s=pelapor'>Komplain <span class='badge badge-secondary' style='font-size:85%; background-color: #cecece; color:#000'>".$komplain_beli->num_rows()."</span></a></li>
+        echo "<li class='current-menu-item'><a href='" . base_url() . "komplain?s=pelapor'>Komplain <span class='badge badge-secondary' style='font-size:85%; background-color: #cecece; color:#000'>".@$komplain_beli."</span></a></li>
               <li class='current-menu-item'><a style='color:red' href='".base_url()."auth/logout'>Logout</a></li>";
         ?>
     </ul>
