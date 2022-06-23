@@ -1554,12 +1554,13 @@
 						-->
                     </div>
                     <div class="header__right">
-                        <form class="ps-form--quick-search"  id="filter" action="<?php echo base_url() ?>produk" method="GET">
-                            <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Search..." autocomplete='off' required><i class="fa fa-search" id="filtersubmit" aria-hidden="true"></i>
-                        </form>
+                        
                         <div class="header__actions">
-                            <!--<a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a>-->
-                            
+                            <form class="ps-form--quick-search" style='margin:0 0px;' id="filter" action="<?php echo base_url() ?>produk" method="GET">
+                                <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Search..." autocomplete='off' required><i class="fa fa-search" id="filtersubmit" aria-hidden="true"></i>
+                            </form>
+                            <!-- <a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a> -->
+                            <a class="header__extra" href="#" data-toggle="modal" data-target=".bd-example-modal-lg" style='margin:0 10px;width:20px;'><i style='font-size:20px;' class="icon-user"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1589,7 +1590,8 @@
     }else{
         echo $contents;
     }
-    if(empty($this->uri->segment('1')) || $this->uri->segment('1') == "main"){
+    if($this->uri->segment('1') == "auth" || $this->uri->segment('1') == "members"){}
+    else if(empty($this->uri->segment('1')) || $this->uri->segment('1') == "main"){
         echo '<div class="mt-50" style="margin:0">
         <div class="top-footer">
             <p>Link Terkait:</p>
@@ -1880,6 +1882,7 @@
                             // if(data==true){
                                 show_cart();
                                 $(".m1keranjangx").hide().load(" .m1keranjangx").fadeIn();
+                                window.location.replace("<?= site_url('produk/keranjang') ?>");
                             // }else{
                             //     $('#Modal_Notif').modal('show');
                             //     $('#error_notif').html(data.pesan);

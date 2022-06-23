@@ -195,6 +195,135 @@
     <div class="ps-product-list ps-clothings specialized">
         <div class="ps-container">
             <div class="row">
+                <div class="col-md-12">
+                    <h4>Produk</h4>
+                    <span class="border-center"></span>
+                    <div class="berita-section">
+                        <div class="ps-tab active" id="tab-1">
+                                <div class="ps-shopping-product">
+                                    <?php 
+                                        if ($jumlah=='0'){ 
+                                            echo "<center>
+                                            <img style='width:250px' src='".base_url()."asset/images/no-product.png'>
+                                            <h3><br>Oops, produk gak ditemukan</h3>
+                                                  Coba kata kunci lain untuk menemukan produk yang dicari...</center>";
+                                        }
+
+                                        if (cetak($_GET['s'])=='group'){
+                                            echo "<form class='ps-form--quick-search' action='".base_url()."produk?s=group' method='POST'>
+                                                <input style='border-left:1px solid #e1e1e1' class='form-control' name='group' type='text' value='".cetak($this->input->post('group'))."' placeholder='Input Kode Group...' autocomplete='off' required=''>
+                                                <button type='submit' name='submit'>Cari</button>
+                                            </form>";
+                                        }
+                                    ?>
+                                    <div class="row">
+                                    <?php 
+                                        foreach ($record->result_array() as $row){
+                                            $ex = explode(';', $row['gambar']);
+                                            if (trim($ex[0])=='' OR !file_exists("asset/foto_produk/".$ex[0])){ $foto_produk = 'no-image.png'; }else{ if (!file_exists("asset/foto_produk/thumb_".$ex[0])){ $foto_produk = $ex[0]; }else{ $foto_produk = "thumb_".$ex[0]; }}
+                                            if (strlen($row['nama_produk']) > 38){ $judul = substr($row['nama_produk'],0,38).',..';  }else{ $judul = $row['nama_produk']; }
+                                            $jual = $this->model_reseller->jual_reseller($row['id_reseller'],$row['id_produk'])->row_array();
+                                            $beli = $this->model_reseller->beli_reseller($row['id_reseller'],$row['id_produk'])->row_array();
+
+                                            $disk = $this->model_app->view_where("rb_produk_diskon",array('id_produk'=>$row['id_produk']))->row_array();
+                                            $diskon = rupiah(($disk['diskon']/$row['harga_konsumen'])*100,0)." %";
+
+                                            if ($beli['beli']-$jual['jual']<=0){ 
+                                                $stok = "<div class='ps-product__badge out-stock'>Habis Terjual</div>"; 
+                                                $diskon_persen = ''; 
+                                            }else{ 
+                                                $stok = ""; 
+                                                if ($diskon>0){ 
+                                                    $diskon_persen = "<div class='ps-product__badge'>$diskon</div>"; 
+                                                }else{
+                                                    $diskon_persen = ''; 
+                                                }
+                                            }
+                                
+                                            
+
+                                            $sold = $this->model_reseller->produk_terjual($row['id_produk'],2);
+                                            $persentase = ($sold->num_rows()/$beli['beli'])*100;
+                                            $cek_save = $this->db->query("SELECT * FROM rb_konsumen_simpan where id_konsumen='".$this->session->id_konsumen."' AND id_produk='$row[id_produk]'")->num_rows();
+                                            
+                                            if (isset($_POST['submit'])){
+                                                $ex = explode('.',$row['group_order']);
+                                                $idgroup = $ex['0']."&kode=$row[group_order]";
+                                                $beligroup = $ex['1'];
+                                                $harga_produk =  "Rp ".rupiah($row['harga_jual']);
+                                            }else{
+                                                $idgroup = $row['id_group'];
+                                                $beligroup = $row['jumlah_group'];
+                                                if ($disk['diskon']>=1){ 
+                                                    $harga_produk =  "Rp ".rupiah($row['harga_konsumen']-$disk['diskon'])." <del style='display:none'>".rupiah($row['harga_konsumen'])."</del>";
+                                                }else{
+                                                    $harga_produk =  "Rp ".rupiah($row['harga_konsumen']);
+                                                }
+                                            }
+
+                                            echo "<div class='col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 '>
+                                                    <div class='ps-product'>
+                                                        <div class='ps-product__thumbnail'><a href='".base_url()."asset/foto_produk/$foto_produk' class='progressive replace'><img class='preview' loading='lazy' src='".base_url()."asset/foto_produk/$foto_produk' alt='$row[nama_produk]'></a>
+                                                        $diskon_persen
+                                                        $stok";
+                                                        if (cetak($_GET['s'])!='group'){
+                                                            echo "<ul class='ps-product__actions produk-$row[id_produk]'>
+                                                                <li><a href='".base_url()."produk/detail/$row[produk_seo]' data-toggle='tooltip' data-placement='top' title='Read More'><i class='icon-bag2'></i></a></li>
+                                                                <li><a href='#' data-toggle='tooltip' data-placement='top' title='Quick View' class='quick_view' data-id='$row[id_produk]'><i class='icon-eye'></i></a></li>";
+                                                                if ($cek_save>='1'){
+                                                                    echo "<li><a data-toggle='tooltip' data-placement='top' title='Add to Whishlist'><i style='color:red' class='icon-heart'></i></a></li>";
+                                                                }else{
+                                                                    echo "<li><a data-toggle='tooltip' data-placement='top' id='save-$row[id_produk]' title='Add to Whishlist'><i class='icon-heart' onclick=\"save('$row[id_produk]',this.id)\"></i></a></li>";
+                                                                }
+                                                            echo "</ul>";
+                                                        }
+                                                        echo "</div>
+                                                        <div class='ps-product__container'><a class='ps-product__vendor' href='".base_url()."u/".user_reseller($row['id_reseller'])."'>".cek_paket_icon($row['id_reseller'])." $row[nama_reseller]</a>
+                                                            <div class='ps-product__content'>";
+                                                                if (cetak($_GET['s'])=='group'){
+                                                                    echo "<a class='ps-product__title' href='".base_url()."produk/detail/$row[produk_seo]?g=$idgroup'>$judul</a>
+                                                                            <p class='ps-product__price'>$harga_produk</p>
+                                                                            <p class='ps-product__price group-order'><i class='icon-users'></i> <b>Beli Ber-$beligroup</b></p>";
+                                                                }else{
+                                                                echo "<a class='ps-product__title' href='".base_url()."produk/detail/$row[produk_seo]'>$judul</a>
+                                                                    <p class='ps-product__price'>$harga_produk</p>";
+                                                                }
+                                                            echo "</div>
+                                                            <div class='ps-product__content hover'>";
+                                                            if (cetak($_GET['s'])=='group'){
+                                                                echo "<span class='ps-product__title'>$judul</span>
+                                                                <p class='ps-product__price'>$harga_produk</p>
+                                                                <a href='".base_url()."produk/detail/$row[produk_seo]?g=$idgroup'><p class='ps-product__price group-order'><i class='icon-users'></i> <b style='color:red'>Beli Ber-$beligroup</b></p></a>";
+                                                            }else{
+                                                                echo "<a class='ps-product__title' href='".base_url()."produk/detail/$row[produk_seo]'>$judul</a>
+                                                                        <a style='margin-top:10px' href='".base_url()."produk/detail/$row[produk_seo]' class='ps-btn ps-btn--fullwidth add-to-cart'>Lihat Detail</a>";
+                                                            }
+                                                            echo "</div>
+                                                        </div>
+                                                    </div>
+                                                </div>";
+                                        }
+                                    ?>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer-row">
+                <div class="col-md-12">
+                    <div class="mt-30"></div>
+                    <hr>
+                    <a href="<?= base_url() ?>produk">Lihat Semua Produk</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ps-product-list ps-clothings specialized">
+        <div class="ps-container">
+            <div class="row">
                 <div class="col-md-8">
                     <h4>Berita Terbaru</h4>
                     <span class="border-center"></span>
@@ -270,7 +399,7 @@
                                     $nama = $r['nama_lengkap']; 
                                     echo '
                                 <div class="boxed-writer">
-                                    <img src="https://lisa.infomedia.co.id/digitallearning/uploads/secure/reserv/user.png">
+                                    <img src="https://ps.w.org/simple-user-avatar/assets/icon-256x256.png?rev=2413146">
                                     <span style="">'.$nama.'</span>
                                 </div>'; }
                                 ?>
