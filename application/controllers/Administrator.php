@@ -504,6 +504,19 @@ class Administrator extends CI_Controller {
 		$this->template->load('administrator/template','administrator/mod_berita/view_berita',$data);
 	}
 
+    function listopini(){
+		cek_session_akses('listberita',$this->session->id_session);
+        if ($this->session->level=='admin'){
+            $data['record'] = $this->model_app->view_where_ordering('berita','berita.username != "admin"','id_berita','DESC');
+        }else{
+            $data['record'] = $this->model_app->view_where_ordering('berita',array('username'=>$this->session->username),'id_berita','DESC');
+        }
+        $data['rss'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori','berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',0,10);
+        $data['iden'] = $this->model_utama->view_where('identitas',array('id_identitas' => 1))->row_array();
+        $this->load->view('administrator/rss',$data);
+		$this->template->load('administrator/template','administrator/mod_berita/view_opini',$data);
+	}
+
 	function tambah_listberita(){
 		cek_session_akses('listberita',$this->session->id_session);
 		if (isset($_POST['submit'])){
@@ -676,6 +689,18 @@ class Administrator extends CI_Controller {
 		redirect($this->uri->segment(1).'/listberita');
 	}
 
+    function publish_listopini(){
+        cek_session_admin();
+		if ($this->uri->segment(4)=='Y'){
+			$data = array('status'=>'N');
+		}else{
+			$data = array('status'=>'Y');
+		}
+        $where = array('id_berita' => $this->uri->segment(3));
+		$this->model_app->update('berita', $data, $where);
+		redirect($this->uri->segment(1).'/listopini');
+	}
+
 	function delete_listberita(){
         cek_session_akses('listberita',$this->session->id_session);
         if ($this->session->level=='admin'){
@@ -685,6 +710,17 @@ class Administrator extends CI_Controller {
         }
 		$this->model_app->delete('berita',$id);
 		redirect($this->uri->segment(1).'/listberita');
+	}
+
+    function delete_listopini(){
+        cek_session_akses('listberita',$this->session->id_session);
+        if ($this->session->level=='admin'){
+    		$id = array('id_berita' => $this->uri->segment(3));
+        }else{
+            $id = array('id_berita' => $this->uri->segment(3), 'username'=>$this->session->username);
+        }
+		$this->model_app->delete('berita',$id);
+		redirect($this->uri->segment(1).'/listopini');
 	}
 
 

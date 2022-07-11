@@ -112,6 +112,87 @@ class Members extends CI_Controller {
 		}
 	}
 
+	function tambah_opini(){
+		cek_session_members();
+		$row = $this->model_reseller->profile_konsumen($this->session->id_konsumen)->row_array();
+		if (isset($_POST['submit'])){
+			$config['upload_path'] = 'asset/foto_berita/';
+	        $config['allowed_types'] = 'gif|jpg|png|JPG|JPEG|jpeg';
+	        $config['max_size'] = '3000'; // kb
+	        $this->load->library('upload', $config);
+	        $this->upload->do_upload('k');
+	        $hasil=$this->upload->data();
+            
+            $config['source_image'] = 'asset/foto_berita/'.$hasil['file_name'];
+            $config['wm_text'] = '';
+            $config['wm_type'] = 'text';
+            $config['wm_font_path'] = './system/fonts/texb.ttf';
+            $config['wm_font_size'] = '26';
+            $config['wm_font_color'] = 'ffffff';
+            $config['wm_vrt_alignment'] = 'middle';
+            $config['wm_hor_alignment'] = 'center';
+            $config['wm_padding'] = '20';
+            $this->load->library('image_lib',$config);
+            $this->image_lib->watermark();
+
+            $status = 'N';
+            if ($this->input->post('j')!=''){
+                $tag_seo = $this->input->post('j');
+                $tag=implode(',',$tag_seo);
+            }else{
+                $tag = '';
+            }
+            if ($hasil['file_name']==''){
+                    $data = array('id_kategori'=>$this->db->escape_str($this->input->post('a')),
+                                    'username'=>$row['username'],
+                                    'judul'=>$this->db->escape_str($this->input->post('b')),
+                                    'sub_judul'=>$this->db->escape_str($this->input->post('c')),
+                                    'youtube'=>$this->db->escape_str($this->input->post('d')),
+                                    'judul_seo'=>seo_title($this->input->post('b')),
+                                    'headline'=>$this->db->escape_str($this->input->post('e')),
+                                    'aktif'=>$this->db->escape_str($this->input->post('f')),
+                                    'utama'=>$this->db->escape_str($this->input->post('g')),
+                                    'isi_berita'=>$this->input->post('h'),
+                                    'keterangan_gambar'=>$this->input->post('i'),
+                                    'hari'=>hari_ini(date('w')),
+                                    'tanggal'=>date('Y-m-d'),
+                                    'jam'=>date('H:i:s'),
+                                    'dibaca'=>'0',
+                                    'tag'=>$tag,
+                                    'status'=>$status);
+            }else{
+                    $data = array('id_kategori'=>$this->db->escape_str($this->input->post('a')),
+									'username'=>$row['username'],
+                                    'judul'=>$this->db->escape_str($this->input->post('b')),
+                                    'sub_judul'=>$this->db->escape_str($this->input->post('c')),
+                                    'youtube'=>$this->db->escape_str($this->input->post('d')),
+                                    'judul_seo'=>seo_title($this->input->post('b')),
+                                    'headline'=>$this->db->escape_str($this->input->post('e')),
+                                    'aktif'=>$this->db->escape_str($this->input->post('f')),
+                                    'utama'=>$this->db->escape_str($this->input->post('g')),
+                                    'isi_berita'=>$this->input->post('h'),
+                                    'keterangan_gambar'=>$this->input->post('i'),
+                                    'hari'=>hari_ini(date('w')),
+                                    'tanggal'=>date('Y-m-d'),
+                                    'jam'=>date('H:i:s'),
+                                    'gambar'=>$hasil['file_name'],
+                                    'dibaca'=>'0',
+                                    'tag'=>$tag,
+                                    'status'=>$status);
+            }
+            $this->model_app->insert('berita',$data);
+			redirect($this->uri->segment(1).'/opini_publik');
+		}else{
+			$data['title'] = 'Tambah Opini Publik';
+			$data['row'] = $this->model_reseller->profile_konsumen($this->session->id_konsumen)->row_array();
+			$row = $this->model_reseller->profile_konsumen($this->session->id_konsumen)->row_array();
+			$data['provinsi'] = $this->model_app->view_ordering('rb_provinsi','provinsi_id','ASC');
+			$data['rowse'] = $this->db->query("SELECT provinsi_id FROM rb_kota where kota_id='$row[kota_id]'")->row_array();
+			// $data['record'] = $this->model_app->view_ordering('kategori','id_kategori','DESC');
+			$this->template->load(template().'/template',template().'/reseller/view_add_opini',$data);
+		}
+	}
+
 	function sosial_media(){
 		cek_session_members();
 		$data['title'] = 'Sosial Media';
@@ -1697,6 +1778,14 @@ class Members extends CI_Controller {
 		$data['row'] = $this->model_reseller->profile_konsumen($this->session->id_konsumen)->row_array();
 		$data['record'] = $this->db->query("SELECT a.*, a.keterangan as keterangan_order, b.keterangan FROM rb_withdraw a LEFT JOIN rb_konsumen_detail b ON a.id_rekening_reseller=b.id_konsumen_detail where (a.id_reseller='".reseller($this->session->id_konsumen)."' AND a.akun='reseller') OR (a.id_reseller='".$this->session->id_konsumen."' AND a.akun='konsumen') ORDER BY a.id_withdraw DESC");
 		$this->template->load(template().'/template',template().'/reseller/view_withdraw',$data);
+	}
+
+	function opini_publik(){
+		cek_session_members();
+		$data['title'] = "Opini Publik";
+		$data['row'] = $this->model_reseller->profile_konsumen($this->session->id_konsumen)->row_array();
+		$data['record'] = $this->db->query("SELECT a.* FROM berita a where a.username='".$data['row']['username']."' ORDER BY a.id_berita DESC");
+		$this->template->load(template().'/template',template().'/reseller/view_opini_publik',$data);
 	}
 
 	function rekening_pilih(){
