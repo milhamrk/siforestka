@@ -234,6 +234,11 @@
                   echo "<li><a href='".base_url().$this->uri->segment(1)."/listberita'><i class='fa fa-circle-o'></i> Berita</a></li>";
                 }
 
+                $cek=$this->model_app->umenu_akses("listopini",$this->session->id_session);
+                if($cek==1 OR $this->session->level=='admin'){
+                  echo "<li><a href='".base_url().$this->uri->segment(1)."/listopini'><i class='fa fa-circle-o'></i> Opini Publik</a></li>";
+                }
+
                 $cek=$this->model_app->umenu_akses("kategoriberita",$this->session->id_session);
                 if($cek==1 OR $this->session->level=='admin'){
                   echo "<li><a href='".base_url().$this->uri->segment(1)."/kategoriberita'><i class='fa fa-circle-o'></i> Kategori Berita</a></li>";

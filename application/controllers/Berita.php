@@ -22,7 +22,7 @@ class Berita extends CI_Controller {
 					$data['title'] = "Semua Berita";
 					$data['description'] = description();
 					$data['keywords'] = keywords();
-					$data['berita'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',$dari,$config['per_page']);
+					$data['berita'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',$dari,$config['per_page']);
 					$this->pagination->initialize($config);
 				}
 			$this->template->load(template().'/template',template().'/berita',$data);
@@ -30,10 +30,11 @@ class Berita extends CI_Controller {
 
 	public function detail(){
 		$query = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori',array('judul_seo' => cetak($this->uri->segment(3))),'id_berita','DESC',0,1);
-		if ($query->num_rows()<=0){
+		$query2 = $this->model_utama->view_join_one('berita','kategori','id_kategori',array('judul_seo' => cetak($this->uri->segment(3))),'id_berita','DESC',0,1);
+		if ($query->num_rows()<=0 && $query2->num_rows()<=0){
 			redirect('main');
 		}else{
-			$row = $query->row_array();
+			$row = ($query->num_rows()<=0 ? $query2->row_array() : $query->row_array());
 			$data['title'] = cetak($row['judul']);
 			$data['description'] = cetak_meta($row['isi_berita'],0,500);
 			$data['keywords'] = cetak($row['tag']);

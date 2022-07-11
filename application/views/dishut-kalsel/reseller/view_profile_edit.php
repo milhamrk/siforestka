@@ -42,7 +42,7 @@
                             <div class='form-group row' style='margin-bottom:5px'>
                             <label class='col-sm-3 col-form-label' style='margin-bottom:1px'>Username</b></label>
                               <div class='col-sm-9'>
-                              <input type='text' name='aa' class='form-control form-mini' value='$row[username]' autocomplete='off' onkeyup=\"nospaces(this)\">
+                              <input type='text' name='aa' class='form-control form-mini' value='$row[username]' autocomplete='off' onkeyup=\"nospaces(this)\" readonly>
                               </div>
                             </div>
                             <div class='form-group row' style='margin-bottom:5px'>

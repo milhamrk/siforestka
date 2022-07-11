@@ -55,14 +55,15 @@ class Main extends CI_Controller {
 									LEFT JOIN rb_kota c ON b.kota_id=c.kota_id where a.id_reseller!='0' AND a.aktif='Y' ORDER BY a.id_produk DESC LIMIT 0,12");
 		$maps = explode('|',$row['maps']);
 		$data['penulis'] = $this->model_utama->penulis();
-		$data['berita'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',0,5);
-		$data['berita_sisi'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',5,3);
+		$data['berita'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',0,5);
+		$data['opini'] = $this->model_utama->view_join_one('berita','kategori','id_kategori', 'berita.status = "Y" AND berita.username != "admin"','id_berita','DESC',0,5);
+		$data['berita_sisi'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',5,3);
 
-		$data['aksi'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',0,3);
-		$data['aksi_dua'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',3,3);
-		$data['sosialisasi'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',6,6);
-		$data['edukasi'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',12,6);
-		$data['persuasif'] = $this->model_utama->view_joinn('berita','users','kategori','username','id_kategori','id_berita','DESC',18,6);
+		$data['aksi'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',0,3);
+		$data['aksi_dua'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',3,3);
+		$data['sosialisasi'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',6,6);
+		$data['edukasi'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',12,6);
+		$data['persuasif'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',18,6);
 		$data['maps'] = $maps[0];
 		if ($maps[0]!=''){
 			$url1 = 'https://tripay.co.id/api/v2/pembelian/operator/';
