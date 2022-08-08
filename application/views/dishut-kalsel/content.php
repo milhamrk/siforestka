@@ -46,20 +46,21 @@ foreach ($slider->result_array() as $row) {
                         $rows_slider = json_decode($row['keterangan']);
                     }else{$rows_slider = '';}
                     ?>
-                <div class='slide'>
-                    <img class='owl-item-bg' src='<?= base_url()."asset/foto_slide/$row[gambar]" ?>'>
-                    <div class='slide-content'>
-                    <div class='overlay'></div>
-                    <h3><?= $rows_slider->judul ?></h3>
-                    <h2><?= $rows_slider->subjudul ?></h2>
-                    <div class="border-slide"> </div>
-                    <p><?= $rows_slider->deskrip ?></p>
-                    <div class="sticky-play">
-                        <a data-toggle="modal" data-target="#myModal<?= $na ?>"><img src="<?= base_url() ?>asset/images/play.svg" alt="" /></a>
+                    <div class='slide'>
+                        <img class='owl-item-bg' src='<?= base_url()."asset/foto_slide/$row[gambar]" ?>'>
+                        <div class='slide-content'>
+                            <div class='overlay'></div>
+                            <h3><?= $rows_slider->judul ?></h3>
+                            <h2><?= $rows_slider->subjudul ?></h2>
+                            <div class="border-slide"> </div>
+                            <p><?= $rows_slider->deskrip ?></p>
+                            <div class="sticky-play">
+                                <a data-toggle="modal" data-target="#myModal<?= $na ?>"><img src="<?= base_url() ?>asset/images/play.svg" alt="" /></a>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
                 <?php $na++; } ?>
+                </div>
             </div>
         </div>
     </div>
