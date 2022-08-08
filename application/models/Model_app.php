@@ -130,9 +130,9 @@ class Model_app extends CI_model{
         $this->upload->do_upload('b');
         $hasil=$this->upload->data();
         if ($hasil['file_name']==''){
-            $datadb = array('keterangan'=>$this->db->escape_str($this->input->post('a')));
+            $datadb = array('keterangan'=>$this->input->post('a'));
         }else{
-            $datadb = array('keterangan'=>$this->db->escape_str($this->input->post('a')),
+            $datadb = array('keterangan'=>$this->input->post('a'),
                             'gambar'=>$hasil['file_name']);
         }
         $this->db->where('id_slide',$this->input->post('id'));

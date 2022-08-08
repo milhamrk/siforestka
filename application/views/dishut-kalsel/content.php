@@ -1,4 +1,14 @@
-<div id="myModal" class="modal fade" role="dialog">
+<?php
+$nu = 0;
+$slider = $this->model_app->view_ordering_limit('slide','id_slide','DESC',0,4);
+foreach ($slider->result_array() as $row) { 
+    if(isJson($row['keterangan'])){
+        $rows_slider = json_decode($row['keterangan']);
+    }else{$rows_slider = '';}
+    $url = str_replace("watch?v=", "embed/", $rows_slider->video);
+?>
+
+<div id="myModal<?= $nu ?>" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -8,7 +18,7 @@
             </div>
 
             <div class="modal-body">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VwmTVOOp0go?rel=0&amp;controls=0" "frameborder="0" allowfullscreen autoplay></iframe>
+                    <iframe width="560" height="315" src="<?= $url ?>?rel=0&amp;controls=0" "frameborder="0" allowfullscreen autoplay></iframe>
             </div>
 
             <div class="modal-footer">
@@ -18,6 +28,7 @@
 
     </div>
 </div>
+<?php $nu++; } ?>
 <div id="homepage-1" style="background:#000;">
     
 
@@ -27,33 +38,28 @@
             <div class="ps-section">
                 <!-- / photos from stocksnap.io -->
                 <div class='owl-carousel' id='owlCarousel'>
+                <?php 
+                $na = 0;
+                $slider = $this->model_app->view_ordering_limit('slide','id_slide','DESC',0,4);
+                foreach ($slider->result_array() as $row) { 
+                    if(isJson($row['keterangan'])){
+                        $rows_slider = json_decode($row['keterangan']);
+                    }else{$rows_slider = '';}
+                    ?>
                 <div class='slide'>
-                    <img class='owl-item-bg' src='<?= base_url()."asset/images/background_header.png" ?>'>
+                    <img class='owl-item-bg' src='<?= base_url()."asset/foto_slide/$row[gambar]" ?>'>
                     <div class='slide-content'>
                     <div class='overlay'></div>
-                    <h3>Kesatuan Pengelolaan Hutan (KPH)</h3>
-                    <h2>Tabalong</h2>
+                    <h3><?= $rows_slider->judul ?></h3>
+                    <h2><?= $rows_slider->subjudul ?></h2>
                     <div class="border-slide"> </div>
-                    <p>Portal berita, informasi, komunikasi, dan edukasi  masyarakat terkait kondisi hutan KPH Tabalong, Kalimantan Selatan.</p>
+                    <p><?= $rows_slider->deskrip ?></p>
                     <div class="sticky-play">
-                        <a data-toggle="modal"  data-target="#myModal"><img src="<?= base_url() ?>asset/images/play.svg" alt="" /></a>
+                        <a data-toggle="modal" data-target="#myModal<?= $na ?>"><img src="<?= base_url() ?>asset/images/play.svg" alt="" /></a>
                     </div>
                     </div>
                 </div>
-                <div class='slide'>
-                        <img class='owl-item-bg' src='<?= base_url()."asset/images/bg-2.jpg" ?>'>
-                    <div class='slide-content'>
-                        <div class='overlay'></div>
-                            <h3>Kesatuan Pengelolaan Hutan (KPH)</h3>
-                            <h2>Tabalong</h2>
-                            <div class="border-slide"> </div>
-                            <p>Portal berita, informasi, komunikasi, dan edukasi  masyarakat terkait kondisi hutan KPH Tabalong, Kalimantan Selatan.</p>
-                            <div class="sticky-play">
-                            <a data-toggle="modal"  data-target="#myModal"><img style="height:45px;" src="<?= base_url() ?>asset/images/play.svg" alt="" /></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php $na++; } ?>
             </div>
         </div>
     </div>

@@ -132,6 +132,11 @@ function cetak_meta($str,$mulai,$selesai){
     return strip_tags(html_entity_decode(substr(str_replace('"','',$str),$mulai,$selesai), ENT_COMPAT, 'UTF-8'));
 }
 
+function isJson($string) {
+    json_decode($string);
+    return json_last_error() === JSON_ERROR_NONE;
+}
+
 function sensor($teks){
     $ci = & get_instance();
     $query = $ci->db->query("SELECT * FROM katajelek");

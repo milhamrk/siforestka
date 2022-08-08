@@ -16,11 +16,14 @@
                     </thead>
                     <tbody>
                   <?php 
+                    
                     $no = 1;
                     foreach ($record->result_array() as $row){
-                    if ($row['keterangan']==''){ $keterangan = '<i>Tidak ada Keterangan gambar slider,..</i>'; }else{ $keterangan = $row['keterangan']; }
+                    if(isJson($row['keterangan'])){
+                        $rows_slider = json_decode($row['keterangan']);
+                    }else{$rows_slider = '';}
                     echo "<tr><td>$no</td>
-                              <td>$keterangan</td>
+                              <td>$rows_slider->judul</td>
                               <td><a target='_BLANK' href='".base_url()."asset/foto_slide/$row[gambar]'>$row[gambar]</a></td>
                               <td><center>
                                 <a class='btn btn-success btn-xs' title='Edit Data' href='".base_url()."administrator/edit_imagesslider/$row[id_slide]'><span class='glyphicon glyphicon-edit'></span></a>

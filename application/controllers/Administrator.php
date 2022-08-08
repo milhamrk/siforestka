@@ -4771,14 +4771,31 @@ public function upload(){
 		}
 	}
 
+    function isJson($string) {
+        json_decode($string);
+        return json_last_error() === JSON_ERROR_NONE;
+     }
+     
+
 	function edit_imagesslider(){
 		cek_session_akses('imagesslider',$this->session->id_session);
 		$id = $this->uri->segment(3);
 		if (isset($_POST['submit'])){
+            $keterangan = [
+                'judul' => $this->db->escape_str($_POST['a1']),
+                'subjudul' => $this->db->escape_str($_POST['a2']),
+                'deskripsi' => $this->db->escape_str($_POST['a3']),
+                'video' => $this->db->escape_str($_POST['a4'])
+            ];
+            $_POST['a'] = str_replace('\/','/',json_encode($keterangan));
 			$this->model_app->slide_update();
 			redirect($this->uri->segment(1).'/imagesslider');
 		}else{
 			$data['rows'] = $this->model_app->slide_edit($id)->row_array();
+            $data['rows_slider'] = "";
+            if($this->isJson($data['rows']['keterangan'])){
+                $data['rows_slider'] = json_decode($data['rows']['keterangan']);
+            }
 			$this->template->load('administrator/template','administrator/mod_slider/view_slider_edit',$data);
 		}
 	}
