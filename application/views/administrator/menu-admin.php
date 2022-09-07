@@ -45,6 +45,11 @@
                   echo "<li><a href='".base_url().$this->uri->segment(1)."/menuwebsite'><i class='fa fa-circle-o'></i> Menu Website</a></li>";
                 }
 
+                $cek=$this->model_app->umenu_akses("album",$this->session->id_session);
+                if($cek==1 OR $this->session->level=='admin'){
+                  echo "<li><a href='".base_url().$this->uri->segment(1)."/album'><i class='fa fa-circle-o'></i> Gallery</a></li>";
+                }
+
                 $cek=$this->model_app->umenu_akses("halamanbaru",$this->session->id_session);
                 if($cek==1 OR $this->session->level=='admin'){
                   echo "<li><a href='".base_url().$this->uri->segment(1)."/halamanbaru'><i class='fa fa-circle-o'></i> Halaman Baru</a></li>";

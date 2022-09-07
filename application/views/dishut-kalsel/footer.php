@@ -22,12 +22,12 @@
                         <p>Jl. A. Yani Km. 6 (arah kaltim), Kelurahan Belimbing Raya, Kec. Murung Pudak, Kab. Tabalong. </p>
                         <a href='#' style='color:#FFC552;text-decoration:underline;'>lihat peta</a>
                     </aside>"; 
-                }else if($row['id_kategori_banner']=='7'){ 
+                }else if($row['nama_kategori_banner']=='Statistik Pengunjung'){ 
                     echo "<aside class='widget widget_footer' style='width:20%;padding:25px;'>
                         <h4 class='widget-title'>Statistik Pengunjung</h4>
-                        <p><b style='color:#FFC552;'>Hari ini</b><p><p>48 orang</p>
-                        <p><b style='color:#FFC552;'>Bulan ini</b><p><p>48 orang</p>
-                        <p><b style='color:#FFC552;'>Total</b><p><p>1000 orang</p>
+                        <p><b style='color:#FFC552;'>Hari ini</b><p><p>".hits_today()." kunjungan</p>
+                        <p><b style='color:#FFC552;'>Bulan ini</b><p><p>".hits_month()." kunjungan</p>
+                        <p><b style='color:#FFC552;'>Total</b><p><p>".hits_total()." kunjungan</p>
                     </aside>"; 
                 }else if($row['id_kategori_banner']=='8'){ 
                     echo "<aside class='widget widget_footer' style='width:25%;padding:25px;'>

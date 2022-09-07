@@ -4,6 +4,10 @@
 				<description>Sistem Informasi Sumber Daya Hutan Kalimantan Selatan (SISDH) merupakan penyampaian informasi dalam menyajikan data potensi sumber daya hutan berupa hasil kayu (HHK), hasil hutan bukan kayu (HHBK) dan jasa lingkungan (JASLING).</description>
 				<link>https://siforestka.co.id</link> 
 				<language>id-id</language><item>
+						                <title>Berita baru</title>
+						                <link>http://localhost/siforestika/berita/detail/berita-baru</link>
+						                <description></description>
+					                </item><item>
 						                <title>Selamatkan Bumi Antasari Sedari Dini, Kadishut Dialog Hari Bumi Bersama BPost</title>
 						                <link>http://localhost/siforestika/berita/detail/selamatkan-bumi-antasari-sedari-dini-kadishut-dialog-hari-bumi-bersama-bpost</link>
 						                <description></description>
@@ -38,10 +42,6 @@
 					                </item><item>
 						                <title>Komisi II DPRD Kabupaten Tabalong Kunjungi Dishut Kalsel</title>
 						                <link>http://localhost/siforestika/berita/detail/komisi-ii-dprd-kabupaten-tabalong-kunjungi-dishut-kalsel</link>
-						                <description></description>
-					                </item><item>
-						                <title>Kunjungi Tahura SA, Menteri LHK Lepasliarkan Dua Elang Bondol</title>
-						                <link>http://localhost/siforestika/berita/detail/kunjungi-tahura-sa-menteri-lhk-lepasliarkan-dua-elang-bondol</link>
 						                <description></description>
 					                </item></channel>
   	</rss>

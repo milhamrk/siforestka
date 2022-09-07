@@ -979,6 +979,7 @@ class Administrator extends CI_Controller {
                 $data = array('jdl_album'=>$this->input->post('a'),
                             'album_seo'=>seo_title($this->input->post('a')),
                             'keterangan'=>$this->input->post('b'),
+                            'opsi'=>$this->input->post('e'),
                             'aktif'=>'Y',
                             'hits_album'=>'0',
                             'tgl_posting'=>date('Y-m-d'),
@@ -989,6 +990,7 @@ class Administrator extends CI_Controller {
                 $data = array('jdl_album'=>$this->input->post('a'),
                             'album_seo'=>seo_title($this->input->post('a')),
                             'keterangan'=>$this->input->post('b'),
+                            'opsi'=>$this->input->post('e'),
                             'gbr_album'=>$hasil['file_name'],
                             'aktif'=>'Y',
                             'hits_album'=>'0',
@@ -1018,12 +1020,14 @@ class Administrator extends CI_Controller {
             if ($hasil['file_name']==''){
                 $data = array('jdl_album'=>$this->input->post('a'),
                             'album_seo'=>seo_title($this->input->post('a')),
+                            'opsi'=>$this->input->post('e'),
                             'keterangan'=>$this->input->post('b'),
                             'aktif'=>$this->input->post('d'));
             }else{
                 $data = array('jdl_album'=>$this->input->post('a'),
                             'album_seo'=>seo_title($this->input->post('a')),
                             'keterangan'=>$this->input->post('b'),
+                            'opsi'=>$this->input->post('e'),
                             'gbr_album'=>$hasil['file_name'],
                             'aktif'=>$this->input->post('d'));
             }

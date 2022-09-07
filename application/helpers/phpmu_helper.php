@@ -68,6 +68,49 @@ function verifikasi($id_konsumen){
     }
 }
 
+function hits(){
+    $ci = & get_instance();
+    $today = date("Y-m-d");
+    $res = $ci->db->query("SELECT * FROM hits where date='$today'");
+    if ($res->num_rows()>=1){
+        $new = $res->row_array()['count']+1;
+        $ci->db->query("UPDATE hits set count='$new' where date='$today'");
+    }
+    else{
+        $ci->db->query("INSERT INTO hits VALUES('','1','$today')");
+    }
+}
+
+function hits_today(){
+    $ci = & get_instance();
+    $res = $ci->db->query("SELECT sum(`count`) as total FROM `hits` WHERE DAY(`date`) = DAY(CURRENT_DATE())");
+    if ($res->num_rows()>=1){
+        return $res->row_array()['total'];
+    }else{
+        return 0;
+    }
+}
+
+function hits_month(){
+    $ci = & get_instance();
+    $res = $ci->db->query("SELECT sum(`count`) as total FROM `hits` WHERE MONTH(`date`) = MONTH(CURRENT_DATE())");
+    if ($res->num_rows()>=1){
+        return $res->row_array()['total'];
+    }else{
+        return 0;
+    }
+}
+
+function hits_total(){
+    $ci = & get_instance();
+    $res = $ci->db->query("SELECT sum(`count`) as total FROM `hits`");
+    if ($res->num_rows()>=1){
+        return $res->row_array()['total'];
+    }else{
+        return 0;
+    }
+}
+
 function verifikasi_cek($id_reseller){
     $ci = & get_instance();
     $res = $ci->db->query("SELECT id_reseller FROM rb_reseller where id_reseller='$id_reseller' AND verifikasi='N'");

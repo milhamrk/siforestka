@@ -12,10 +12,11 @@
                   <tbody>
                     <input type='hidden' name='id' value='$rows[id_album]'>
                     <tr><th width='120px' scope='row'>Judul Album</th>   <td><input type='text' class='form-control' name='a' value='$rows[jdl_album]'></td></tr>
-                    <tr><th scope='row'>Keterangan</th>           <td><textarea class='ckeditor form-control' name='b' style='height:260px'>$rows[keterangan]</textarea></td></tr>
+                    <tr><th scope='row'>Keterangan</th>           <td><input class='form-control' name='b' value='$rows[keterangan]'/></td></tr>
                     <tr><th scope='row'>Ganti Cover</th>          <td><input type='file' class='form-control' name='c'><hr style='margin:5px'>";
                                                                    if ($rows['gbr_album']!=''){ echo " Gambar Saat ini : <a target='_BLANK' href='".base_url()."asset/img_album/$rows[gbr_album]'>$rows[gbr_album]</a>"; } echo "</td></tr>
                     <tr><th scope='row'>Aktif </th>        <td>"; if ($rows['aktif']=='Y'){ echo "<input type='radio' name='d' value='Y' checked> Ya &nbsp; <input type='radio' name='d' value='N'> Tidak"; }else{ echo "<input type='radio' name='d' value='Y'> Ya &nbsp; <input type='radio' name='d' value='N' checked> Tidak"; } echo "</td></tr>
+                    <tr><th scope='row'>Opsi </th>        <td>"; echo "<input type='radio' name='e' value='Gambar' required ".(($rows['opsi']=='gambar') ? 'checked' : '')."> Gambar &nbsp; <input type='radio' name='e' value='Video' required ".(($rows['opsi']=='video') ? 'checked' : '')."> Video"; echo "</td></tr>
                   </tbody>
                   </table>
                 </div>

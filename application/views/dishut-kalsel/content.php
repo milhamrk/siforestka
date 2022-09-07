@@ -396,25 +396,6 @@ foreach ($slider->result_array() as $row) {
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Peringkat Penulis</h4>
-                            <span class="border-center-right"></span>
-                            <div class="list-writer">
-                                <?php 
-                                $no = 0;
-                                foreach ($penulis->result_array() as $r) {	
-                                    $no++;
-                                    $nama = $r['nama_lengkap']; 
-                                    echo '
-                                <div class="boxed-writer">
-                                    <img src="https://ps.w.org/simple-user-avatar/assets/icon-256x256.png?rev=2413146">
-                                    <span style="">'.$nama.'</span>
-                                </div>'; }
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
                             <h4>Berita Lainnya</h4>
                             <span class="border-center-right"></span>
                             <?php 
@@ -441,7 +422,7 @@ foreach ($slider->result_array() as $row) {
     <div class="ps-product-list ps-clothings specialized">
         <div class="ps-container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <h4>Berita Terbaru</h4>
                     <span class="border-center"></span>
                     <div class="berita-section">
@@ -457,9 +438,10 @@ foreach ($slider->result_array() as $row) {
                                 $isi = substr($isi_berita,0,strrpos($isi," ")); 
                                 $judul = $r['judul']; 
                                 $total_komentar = $this->model_utama->view_where('komentar',array('id_berita' => $r['id_berita']))->num_rows();
-                                $width = 33.33;
-                                if($no==1) $width = 60;
-                                else if($no==2) $width = 40;
+                                $width = 25;
+                                if($no==1) $width = 50;
+                                // else if($no==2) $width = 40;
+                                // else if($no==2) $width = 40;
 
                                     echo '<div class="card-2 card-mean" style="width:'.$width.'%;">
                                     <div class="wrapper" style="background: url(';
@@ -500,44 +482,6 @@ foreach ($slider->result_array() as $row) {
                                 ?>
                                 
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>Peringkat Penulis</h4>
-                            <span class="border-center-right"></span>
-                            <div class="list-writer">
-                                <?php 
-                                $no = 0;
-                                foreach ($penulis->result_array() as $r) {	
-                                    $no++;
-                                    $nama = $r['nama_lengkap']; 
-                                    echo '
-                                <div class="boxed-writer">
-                                    <img src="https://ps.w.org/simple-user-avatar/assets/icon-256x256.png?rev=2413146">
-                                    <span style="">'.$nama.'</span>
-                                </div>'; }
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>Berita Lainnya</h4>
-                            <span class="border-center-right"></span>
-                            <?php 
-                            $no = 0;
-                            foreach ($berita_sisi->result_array() as $r) {	
-                                $no++;
-                                $judul = $r['judul']; 
-                                echo '
-                            <div class="home-news">
-                                <h4><a href="'.base_url().'berita/detail/'.$r[judul_seo].'">'.$judul.'</a></h4>
-                                <p>'.tgl_indo($r['tanggal']).' Oleh '.$r[nama_lengkap].'</p>
-                            </div>'; }
-                            ?>
                         </div>
                     </div>
                 </div>

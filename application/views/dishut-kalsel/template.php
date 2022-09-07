@@ -1,3 +1,8 @@
+
+<?php 
+    // hits counter
+    hits();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1209,6 +1214,10 @@
                     margin-bottom:25px;
                 }
 
+                .navbar-nav li:hover>.dropdown-menu {
+                   display: block;
+                }
+
                 .boxed-writer:first-child{
                     margin-top:25px;
                 }
@@ -1536,7 +1545,16 @@
                             <li><a href="<?php echo base_url() ?>">Beranda</a></li>
                             <li><a href="<?php echo base_url() ?>berita">Berita</a></li>
                             <li><a href="<?php echo base_url() ?>peta/dishut">Web GIS</a></li>
-                            <li><a href="<?php echo base_url() ?>produk">Produk Lokal</a></li>
+                            <li><a href="<?php echo base_url() ?>produk">Produk</a></li>
+                            <li><a href="<?php echo base_url() ?>produk">Galeri</a></li>
+                            <li class="nav-item dropdown" style="position:relative !important;">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pembenihan</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" style="font-size:1.25rem;padding:0.3rem 1.5rem;" href="<?php echo base_url()  ?>halaman/detail/persediaan-bibit">Siap Tanam</a>
+                                    <a class="dropdown-item" style="font-size:1.25rem;padding:0.3rem 1.5rem;" href="<?php echo base_url()  ?>halaman/detail/produksi-bibit">Produksi Bibit</a>
+                                    <a class="dropdown-item" style="font-size:1.25rem;padding:0.3rem 1.5rem;" href="<?php echo base_url()  ?>halaman/detail/distribusi-bibit">Distribusi Bibit</a>
+                                </div>
+                                </li>
                             <li><a href="<?php echo base_url() ?>halaman/detail/kontak-kami">Kontak</a></li>
                         </ul>
 						<!--

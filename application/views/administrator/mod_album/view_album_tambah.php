@@ -12,8 +12,9 @@
                   <tbody>
                     <input type='hidden' name='id' value=''>
                     <tr><th width='120px' scope='row'>Judul Album</th>   <td><input type='text' class='form-control' name='a'></td></tr>
-                    <tr><th scope='row'>Keterangan</th>                 <td><textarea id='editor1' class='form-control' name='b'></textarea></td></tr>
+                    <tr><th scope='row'>Youtube URL</th>                 <td><input placeholder='https://youtube.com?watch=lalala' class='form-control' name='b' /></td></tr>
                     <tr><th scope='row'>Cover</th>                    <td><input type='file' class='form-control' name='c'></td></tr>
+                    <tr><th scope='row'>Opsi </th>        <td>"; echo "<input type='radio' name='e' value='gambar' required> Gambar &nbsp; <input type='radio' name='e' value='video' required> Video"; echo "</td></tr>
                   </tbody>
                   </table>
                 </div>
