@@ -1546,7 +1546,7 @@
                             <li><a href="<?php echo base_url() ?>berita">Berita</a></li>
                             <li><a href="<?php echo base_url() ?>peta/dishut">Web GIS</a></li>
                             <li><a href="<?php echo base_url() ?>produk">Produk</a></li>
-                            <li><a href="<?php echo base_url() ?>produk">Galeri</a></li>
+                            <li><a href="<?php echo base_url() ?>galeri">Galeri</a></li>
                             <li class="nav-item dropdown" style="position:relative !important;">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pembenihan</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
