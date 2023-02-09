@@ -914,6 +914,11 @@
                 color:#fff;
             }
             
+            .dropdown-menu .dropdown-item {
+                font-size:13px;
+                margin: 5px 8px;
+            }
+            
             footer p, .ps-list--link li a{
                 color:#fff;
             }
@@ -1596,7 +1601,29 @@
                                 <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Search..." autocomplete='off' required><i class="fa fa-search" id="filtersubmit" aria-hidden="true"></i>
                             </form>
                             <!-- <a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a> -->
+                            <?php if ($this->session->id_konsumen!=''){  ?>
+                            <a class="header__extra" href="/members/profile"  style='margin:0 10px;width:20px;'><i style='font-size:20px;' class="icon-user"></i></a>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-danger dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Aksi
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                  <?php 
+                                    $data = array('Profile','Sosmed','Data Bank','Keuangan','Wishlist','Pembelian','Jadi Kurir '.$pesanan_sopir.'');
+                                    $link = array('profile','sosial_media','rekening_bank','withdraw','wishlist','orders_report','sopir');
+                                    for ($i=0; $i < count($data); $i++) { 
+                                        echo "<a class='dropdown-item' href='".base_url()."members/".$link[$i]."'>".$data[$i]."</a>";
+                                    }
+                                echo "<div class='dropdown-divider'></div><a class='dropdown-item' href='" . base_url() . "komplain?s=pelapor'>Komplain <span class='badge badge-secondary' style='font-size:85%; background-color: #cecece; color:#000'>".@$komplain_beli."</span></a>
+                                      <a class='dropdown-item' style='color:red' href='".base_url()."auth/logout'>Logout</a>";
+                                ?>
+                              </div>
+                            </div>
+                            <?php } else { ?>
                             <a class="header__extra" href="#" data-toggle="modal" data-target=".bd-example-modal-lg" style='margin:0 10px;width:20px;'><i style='font-size:20px;' class="icon-user"></i></a>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
