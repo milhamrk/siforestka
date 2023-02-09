@@ -1325,7 +1325,12 @@
                     position:fixed;
                     width:100%;
                     z-index:9999;
-                    background:#aaa;
+                    background:#eee;
+                }
+                
+                .sticky a{
+                    font-weight:bolder;
+                    text-decoration:underline;
                 }
 
                 .sticky-play a img{
@@ -1403,7 +1408,7 @@
 </head>
 
 <body>
-    <div class="sticky">Halo, anda punya produk?</div>
+    <!--<div class="sticky ps-container">Jual Beli produk di sisdh kalsel <a href="/auth/login">Daftar Sekarang!</a></div>-->
     <div class="modal fade bd-example-modal-lg" style='z-index:99999' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -1430,6 +1435,9 @@
                             <hr style='padding:15px 0px 5px 0px'>
                             <div class="info--register-bottom" style='margin-bottom:20px'>
                                 <center><span>Belum punya akun? </span> <a style='color:#000' href="<?php echo base_url(); ?>auth/login" class="btn-register" target="_parent">Daftar sekarang!</a></center>
+                            </div>
+                            <div class="info--register-bottom" style='margin-bottom:20px'>
+                                <center><span>Jual Beli produk di SISDH Kalsel </span> <a style='color:#000' href="<?php echo base_url(); ?>auth/login" class="btn-register" target="_parent">Daftar sekarang!</a></center>
                             </div>
                         </div>
                         <div class="col-md-6" style='padding:0px 40px'>
