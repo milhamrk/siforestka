@@ -81,21 +81,7 @@
                             <input type='hidden' name='j[]'>
                             
                             <div class='form-group row' style='margin-bottom:5px'>
-                            <label class='col-sm-3 col-form-label' style='margin-bottom:1px'>Kategori</b></label>
-                            <div class='col-sm-9'>
-                              <div class='row'>
-                                <div class='col'>
-                                  <select class='form-control form-mini' name='a' id='' required>";
-                                  echo "<option value=0>- Pilih Kategori -</option>";
-                                    $kategori = $this->db->query("SELECT * FROM kategori ORDER BY id_kategori desc");
-                                    foreach ($kategori->result_array() as $rows) {
-                                        echo "<option value='$rows[id_kategori]'>$rows[nama_kategori]</option>";
-                                    }
-                                  echo "</select>
-                                </div>
-                              </div>
-                              
-                            </div>
+                            <input type='hidden' value='62' name='a' />
                             
                             </div>
                             <button type='submit' name='submit' class='ps-btn btn-block spinnerButton'><center><i class='icon-pen'></i> Simpan</center></button>

@@ -56,7 +56,9 @@ class Main extends CI_Controller {
 		$maps = explode('|',$row['maps']);
 		$data['penulis'] = $this->model_utama->penulis();
 		$data['berita'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',0,7);
-		$data['opini'] = $this->model_utama->view_join_one('berita','kategori','id_kategori', 'berita.status = "Y" AND berita.username != "admin"','id_berita','DESC',0,5);
+		$data['opini'] = $this->model_utama->view_join_one('berita','rb_konsumen','username', 'berita.status = "Y" AND berita.username != "admin"','id_berita','DESC',0,5);
+// 		print_r($data['opini']);
+// 		exit();
 		$data['berita_sisi'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',5,5);
 
 		$data['aksi'] = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori', 'berita.status = "Y" AND berita.username = "admin"','id_berita','DESC',0,3);

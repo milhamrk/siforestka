@@ -143,8 +143,9 @@ class Members extends CI_Controller {
                 $tag = '';
             }
             if ($hasil['file_name']==''){
-                    $data = array('id_kategori'=>$this->db->escape_str($this->input->post('a')),
+                    $data = array(
                                     'username'=>$row['username'],
+                                    'id_kategori'=>62,
                                     'judul'=>$this->db->escape_str($this->input->post('b')),
                                     'sub_judul'=>$this->db->escape_str($this->input->post('c')),
                                     'youtube'=>$this->db->escape_str($this->input->post('d')),
@@ -161,8 +162,9 @@ class Members extends CI_Controller {
                                     'tag'=>$tag,
                                     'status'=>$status);
             }else{
-                    $data = array('id_kategori'=>$this->db->escape_str($this->input->post('a')),
+                    $data = array(
 									'username'=>$row['username'],
+									'id_kategori'=>62,
                                     'judul'=>$this->db->escape_str($this->input->post('b')),
                                     'sub_judul'=>$this->db->escape_str($this->input->post('c')),
                                     'youtube'=>$this->db->escape_str($this->input->post('d')),
