@@ -1320,6 +1320,13 @@
                     left: -18px;
                     right: 0;
                 }
+                
+                .sticky{
+                    position:fixed;
+                    width:100%;
+                    z-index:9999;
+                    background:#aaa;
+                }
 
                 .sticky-play a img{
                     height: 45px;
@@ -1396,6 +1403,7 @@
 </head>
 
 <body>
+    <div class="sticky">Halo, anda punya produk?</div>
     <div class="modal fade bd-example-modal-lg" style='z-index:99999' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
