@@ -19,8 +19,8 @@
                 }else if($row['id_kategori_banner']=='6'){ 
                     echo "<aside class='widget widget_footer' style='width:20%;padding:25px;'>
                         <h4 class='widget-title'>Alamat</h4>
-                        <p>Jl. A. Yani Km. 6 (arah kaltim), Kelurahan Belimbing Raya, Kec. Murung Pudak, Kab. Tabalong. </p>
-                        <a href='#' style='color:#FFC552;text-decoration:underline;'>lihat peta</a>
+                        <p>Jl. A. Yani, Loktabat Sel., Kec. Banjarbaru Selatan, Kota Banjarbaru, Kalimantan Selatan 70714</p>
+                        <!-- <a href='#' style='color:#FFC552;text-decoration:underline;'>lihat peta</a> -->
                     </aside>"; 
                 }else if($row['nama_kategori_banner']=='Statistik Pengunjung'){ 
                     echo "<aside class='widget widget_footer' style='width:20%;padding:25px;'>
@@ -32,7 +32,7 @@
                 }else if($row['id_kategori_banner']=='8'){ 
                     echo "<aside class='widget widget_footer' style='width:25%;padding:25px;'>
                         <h4 class='widget-title'>Kontak</h4>
-                        <p><i class='fa fa-phone' aria-hidden='true'></i> 0526-2031541</p>
+                        <p><i class='fa fa-phone' aria-hidden='true'></i> (0511) 4777534</p>
                     </aside>"; 
                 }else{ 
                     echo "<aside class='widget widget_footer' style='width:25%;padding:25px;'>

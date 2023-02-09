@@ -11667,7 +11667,7 @@ ul.new_menu{
 
 header .new_menu li{
   display: inline-block;
-  padding: 0 15px;
+  padding: 0 12px;
 }
 
 header .new_menu li a:hover{

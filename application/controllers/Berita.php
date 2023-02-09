@@ -27,6 +27,32 @@ class Berita extends CI_Controller {
 				}
 			$this->template->load(template().'/template',template().'/berita',$data);
 	}
+	
+	public function opini(){
+			$jumlah= $this->model_utama->view('berita')->num_rows();
+			$config['base_url'] = base_url().'berita/index/';
+			$config['total_rows'] = $jumlah;
+			$config['per_page'] = 5; 	
+			if ($this->uri->segment('3')==''){
+				$dari = 0;
+			}else{
+				$dari = $this->uri->segment('3');
+			}
+			
+				if ($this->input->post('kata')){
+					$data['title'] = "Hasil Pencarian keyword - ".cetak($this->input->post('kata'));
+					$data['description'] = description();
+					$data['keywords'] = keywords();
+					$data['berita'] = $this->model_utama->cari_berita(cetak($this->input->post('kata')));
+				}else{
+					$data['title'] = "Semua Opini";
+					$data['description'] = description();
+					$data['keywords'] = keywords();
+					$data['berita'] = $this->model_utama->view_join_one('berita','rb_konsumen','username', 'berita.status = "Y" AND berita.username != "admin"','id_berita','DESC',$dari,$config['per_page']);
+					$this->pagination->initialize($config);
+				}
+			$this->template->load(template().'/template',template().'/berita',$data);
+	}
 
 	public function detail(){
 		$query = $this->model_utama->view_join_two('berita','users','kategori','username','id_kategori',array('judul_seo' => cetak($this->uri->segment(3))),'id_berita','DESC',0,1);

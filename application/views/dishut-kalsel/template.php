@@ -920,7 +920,7 @@
 
             .mt-50{
                 background:#050505;
-                background-image: url('http://localhost/siforestika/asset/images/bg-footer-top.png');
+                background-image: url('<?= base_url() ?>/asset/images/bg-footer-top.png');
                 height: 280px;
                 position: relative;
                 background-repeat: no-repeat;
@@ -1106,7 +1106,7 @@
                 
                 .card-2 .wrapper {
                 /* background: url(http://localhost/siforestika/asset/foto_berita/279073209_357974409694920_2037136998432395723_n.jpg) center / cover no-repeat; */
-                background: url(http://localhost/siforestika/asset/foto_berita/279073209_357974409694920_2037136998432395723_n.jpg) center / cover no-repeat;
+                background: url(<?= base_url() ?>/asset/foto_berita/279073209_357974409694920_2037136998432395723_n.jpg) center / cover no-repeat;
                 border-radius:11px;
                 }
                 /* .card-2 .wrapper:hover .menu-content span { */
@@ -1544,11 +1544,13 @@
                         <ul class="new_menu">
                             <li><a href="<?php echo base_url() ?>">Beranda</a></li>
                             <li><a href="<?php echo base_url() ?>berita">Berita</a></li>
+                            <li><a href="<?php echo base_url() ?>berita/opini">Opini</a></li>
                             <li><a href="<?php echo base_url() ?>peta/dishut">Web GIS</a></li>
                             <li><a href="<?php echo base_url() ?>produk">Produk</a></li>
                             <li><a href="<?php echo base_url() ?>galeri">Galeri</a></li>
+                            <li><a href="<?php echo base_url() ?>download">Dokumen</a></li>
                             <li class="nav-item dropdown" style="position:relative !important;">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pembenihan</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perbenihan</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" style="font-size:1.25rem;padding:0.3rem 1.5rem;" href="<?php echo base_url()  ?>halaman/detail/persediaan-bibit">Siap Tanam</a>
                                     <a class="dropdown-item" style="font-size:1.25rem;padding:0.3rem 1.5rem;" href="<?php echo base_url()  ?>halaman/detail/produksi-bibit">Produksi Bibit</a>
