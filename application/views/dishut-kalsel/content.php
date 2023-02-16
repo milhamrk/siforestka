@@ -22,13 +22,18 @@ foreach ($slider->result_array() as $row) {
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>$
             </div>
         </div>
 
     </div>
 </div>
-<?php $nu++; } ?>
+<?php $nu++; }
+function rand_color() {
+    // return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+    return "#008e24";
+}
+?>
 <div id="homepage-1" style="background:#000;">
     
 
@@ -518,96 +523,97 @@ foreach ($slider->result_array() as $row) {
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-aksi" role="tabpanel" aria-labelledby="pills-aksi-tab">
-                            </div>
-                            <div class="tab-pane fade" id="pills-sosialisasi" role="tabpanel" aria-labelledby="pills-sosialisasi-tab"></div>
-                            <div class="tab-pane fade" id="pills-edukasi" role="tabpanel" aria-labelledby="pills-edukasi-tab"></div>
-                            <div class="tab-pane fade" id="pills-persuasif" role="tabpanel" aria-labelledby="pills-persuasif-tab"></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="row mt-30">
-                <div class="col-md-6">
-                    <div class="ps-blog__left">
-                    <?php 
-                        function rand_color() {
-                            return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
-                        }
-
-                        foreach ($aksi->result_array() as $r) {	
-                            $judul = $r['judul']; 
-                            $total_komentar = $this->model_utama->view_where('komentar',array('id_berita' => $r['id_berita']))->num_rows();
-                            
-                            echo "<div class='ps-post ps-post--small-thumbnail'>
-                                <div class='ps-post__thumbnail' style='max-width:230px;'><a class='ps-post__overlay' href='".base_url()."berita/detail/$r[judul_seo]'></a>";
-                                    if ($r['gambar'] == ''){
-                                        echo "<img style='border-radius:8px;' src='".base_url()."asset/foto_berita/no-image.jpg' alt='no-image.jpg' /></a>";
-                                    }else{
-                                        echo "<img style='border-radius:8px;' src='".base_url()."asset/foto_berita/$r[gambar]' alt='$r[gambar]' /></a>";
-                                    }
-                                echo "</div>
-                                <div class='ps-post__content' style='text-align:left;'>
-                                    <div class='ps-post__top'>
-                                        <div class='ps-post__meta'>";
-                                        $tags = (explode(",",$r['tag']));
-                                        $hitung = count($tags);
-                                        for ($x=0; $x<=$hitung-1; $x++) {
-                                            if ($tags[$x] != ''){
-                                                $final_tags = str_replace("-"," ",$tags[$x]);
-                                                echo "<a style='text-transform:capitalize;color:".rand_color()."' href='".base_url()."tag/detail/$tags[$x]'>$final_tags</a>";
-                                            }
-                                            break;
-                                        }
-                                        echo "</div><a class='ps-post__title' href='".base_url()."berita/detail/$r[judul_seo]'>$judul</a>
-                                    </div>
-                                    <div class=''>
-                                        <p>".tgl_indo($r['tanggal'])." oleh <a href='#'> $r[nama_lengkap]</a></p>
-                                    </div>
+                                <div class="row mt-30">
+                                    <p>Lorem ipsum dolor</p>
                                 </div>
-                            </div>";
-                        }
-                    ?>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="ps-blog__left">
-                        <?php 
+                            </div>
+                            <div class="tab-pane fade" id="pills-sosialisasi" role="tabpanel" aria-labelledby="pills-sosialisasi-tab">
+                                <div class="row mt-30">
+                                <?php
+                                foreach ($sosialisasi->data->news_list as $list) {	
+                                    $judul = substr_replace($list->title, "...", 58); 
+                                    $using = "sosialisasi";
+                                    
+                                    echo "<div class='col-md-6'><div class='ps-post ps-post--small-thumbnail'>
+                                        <div class='ps-post__thumbnail' style='max-width:230px;'><a class='ps-post__overlay' href='".base_url()."berita/baru/$using/$list->id'></a>";
+                                        echo "<img style='border-radius:8px;' src='$list->cover' alt='$judul' /></a>";
+                                        echo "</div>
+                                        <div class='ps-post__content' style='text-align:left;'>
+                                            <div class='ps-post__top'>
+                                                <div class='ps-post__meta'>";
 
-                            foreach ($aksi_dua->result_array() as $r) {	
-                                $judul = $r['judul']; 
-                                $total_komentar = $this->model_utama->view_where('komentar',array('id_berita' => $r['id_berita']))->num_rows();
-                                
-                                echo "<div class='ps-post ps-post--small-thumbnail'>
-                                    <div class='ps-post__thumbnail' style='max-width:230px;'><a class='ps-post__overlay' href='".base_url()."berita/detail/$r[judul_seo]'></a>";
-                                        if ($r['gambar'] == ''){
-                                            echo "<img style='border-radius:8px;' src='".base_url()."asset/foto_berita/no-image.jpg' alt='no-image.jpg' /></a>";
-                                        }else{
-                                            echo "<img style='border-radius:8px;' src='".base_url()."asset/foto_berita/$r[gambar]' alt='$r[gambar]' /></a>";
-                                        }
-                                    echo "</div>
-                                    <div class='ps-post__content' style='text-align:left;'>
-                                        <div class='ps-post__top'>
-                                            <div class='ps-post__meta'>";
-                                            $tags = (explode(",",$r['tag']));
-                                            $hitung = count($tags);
-                                            for ($x=0; $x<=$hitung-1; $x++) {
-                                                if ($tags[$x] != ''){
-                                                    $final_tags = str_replace("-"," ",$tags[$x]);
-                                                    echo "<a style='text-transform:capitalize;color:".rand_color()."' href='".base_url()."tag/detail/$tags[$x]'>$final_tags</a>";
-                                                }
-                                                break;
-                                            }
-                                            echo "</div><a class='ps-post__title' href='".base_url()."berita/detail/$r[judul_seo]'>$judul</a>
+                                                        echo "<span style='text-transform:capitalize;color:".rand_color()."'>$using</span>";
+                                                echo "</div><a class='ps-post__title' href='".base_url()."berita/baru/$using/$list->id'>$judul</a>
+                                            </div>
+                                            <div class=''>
+                                                <p>".tgl_indo($list->updated_at)." oleh <a href='#'> Dishut Kalsel</a></p>
+                                            </div>
                                         </div>
-                                        <div class=''>
-                                            <p>".tgl_indo($r['tanggal'])." oleh <a href='#'> $r[nama_lengkap]</a></p>
                                         </div>
-                                    </div>
-                                </div>";
-                            }
-                        ?>
+                                    </div>";
+                                }
+                                ?>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-edukasi" role="tabpanel" aria-labelledby="pills-edukasi-tab">
+                                <div class="row mt-30">
+                                <?php
+                                foreach ($edukasi->data->news_list as $list) {	
+                                    $judul = substr_replace($list->title, "...", 58); 
+                                    $using = "edukasi";
+                                    
+                                    echo "<div class='col-md-6'><div class='ps-post ps-post--small-thumbnail'>
+                                        <div class='ps-post__thumbnail' style='max-width:230px;'><a class='ps-post__overlay' href='".base_url()."berita/baru/$using/$list->id'></a>";
+                                        echo "<img style='border-radius:8px;' src='$list->cover' alt='$judul' /></a>";
+                                        echo "</div>
+                                        <div class='ps-post__content' style='text-align:left;'>
+                                            <div class='ps-post__top'>
+                                                <div class='ps-post__meta'>";
+
+                                                        echo "<span style='text-transform:capitalize;color:".rand_color()."'>$using</span>";
+                                                echo "</div><a class='ps-post__title' href='".base_url()."berita/baru/$using/$list->id'>$judul</a>
+                                            </div>
+                                            <div class=''>
+                                                <p>".tgl_indo($list->updated_at)." oleh <a href='#'> Dishut Kalsel</a></p>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>";
+                                }
+                                ?>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-persuasif" role="tabpanel" aria-labelledby="pills-persuasif-tab">
+                                <div class="row mt-30">
+                                <?php
+                                foreach ($persuasif->data->news_list as $list) {	
+                                    $judul = substr_replace($list->title, "...", 58); 
+                                    $using = "persuasif";
+                                    
+                                    echo "<div class='col-md-6'><div class='ps-post ps-post--small-thumbnail'>
+                                        <div class='ps-post__thumbnail' style='max-width:230px;'><a class='ps-post__overlay' href='".base_url()."berita/baru/$using/$list->id'></a>";
+                                        echo "<img style='border-radius:8px;' src='$list->cover' alt='$judul' /></a>";
+                                        echo "</div>
+                                        <div class='ps-post__content' style='text-align:left;'>
+                                            <div class='ps-post__top'>
+                                                <div class='ps-post__meta'>";
+
+                                                        echo "<span style='text-transform:capitalize;color:".rand_color()."'>$using</span>";
+                                                echo "</div><a class='ps-post__title' href='".base_url()."berita/baru/$using/$list->id'>$judul</a>
+                                            </div>
+                                            <div class=''>
+                                                <p>".tgl_indo($list->updated_at)." oleh <a href='#'> Dishut Kalsel</a></p>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>";
+                                }
+                                ?>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
                 </div>
             </div>
         </div>

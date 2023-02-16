@@ -1326,6 +1326,10 @@
                     right: 0;
                 }
                 
+                .dropdown-item:focus, .dropdown-item:hover{
+                    background-color: transparent !important;
+                }
+                
                 .sticky{
                     position:fixed;
                     width:100%;
@@ -1601,8 +1605,28 @@
                                 <input class="form-control" name='s' value='<?= cetak($_GET['s']); ?>' type="text" placeholder="Search..." autocomplete='off' required><i class="fa fa-search" id="filtersubmit" aria-hidden="true"></i>
                             </form>
                             <!-- <a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a> -->
+                            <?php
+                            if (config('mode')=='marketplace'){
+                                if ($this->session->level == 'konsumen') {
+                                    if (reseller($this->session->id_konsumen) != '') {
+                                    $komplain_toko = $this->db->query("SELECT * FROM rb_pusat_bantuan where id_terlapor='".$this->session->id_konsumen."' AND putusan='proses'"); 
+                                    ?>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-danger dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Jualan
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>members/profil_toko"><i class='fa fa-gears'></i> Pengaturan</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>members/produk"><i class='fa fa-th'></i> Daftar Produk</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>members/alamat_cod"><i class='fa fa-map-marker'></i>&nbsp; Alamat Transaksi COD</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>komplain?s=terlapor"><i class='fa fa-warning'></i> Komplain (Terlapor) <span class="badge badge-secondary" style='font-size:85%; background-color: #cecece; color:#000'><?php echo $komplain_toko->num_rows(); ?></span></a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>members/penjualan"><i class='fa fa-list-alt'></i> Orders Masuk <span class="badge badge-secondary" style='font-size:85%; background-color: #cecece; color:#000'><?php echo total_penjualan('0', reseller($this->session->id_konsumen)); ?></span></a>
+                              </div>
+                            </div>
+                            <?php }
+                                }
+                            } ?>
                             <?php if ($this->session->id_konsumen!=''){  ?>
-                            <a class="header__extra" href="/members/profile"  style='margin:0 10px;width:20px;'><i style='font-size:20px;' class="icon-user"></i></a>
                             <div class="btn-group">
                               <button type="button" class="btn btn-danger dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Aksi

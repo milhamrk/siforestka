@@ -1,6 +1,9 @@
+<?php if (config('mode')=='marketplace'){
+                                if ($this->session->level != 'konsumen') {
+                                    ?>
 <p>
     <a href="https://siforestka.co.id/members/buat_toko"><i class="icon-bag"></i> Klik disini untuk mulai Jualan!</a>
-</p>
+</p> <?php } } ?>
 <ul class="ps-section__links d-none d-sm-block">
     <?php 
         $sopir = $this->db->query("SELECT id_sopir FROM rb_sopir where id_konsumen='".$this->session->id_konsumen."'")->row_array();

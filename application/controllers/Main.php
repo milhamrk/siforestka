@@ -27,6 +27,21 @@ class Main extends CI_Controller {
 
 		
 	}
+	
+	public function index2(){
+		echo "do";
+		$base_api = "https://dishut.kehutanan.net/api/";
+		
+		$tipe_dishut = array("edukasi", "sosialisasi", "persuasif");
+        for($i = 0; $i < count($tipe_dishut); $i++){
+            $response = perform_http_request("POST", $base_api."revjo-post/".$tipe_dishut[$i], null);
+            $data[$tipe_dishut[$i]] = $response;
+            sleep(0.1);
+        }
+		echo "kat";
+		//View
+        print_r($data);
+	}
     
 	public function index(){
 		if (isset($_GET['hapus_cookie'])){
@@ -85,6 +100,17 @@ class Main extends CI_Controller {
 			}
 			$data['operator'] = json_decode($operator);
 		}
+		$base_api = "https://dishut.kehutanan.net/api/";
+		$tipe_dishut = array("edukasi", "sosialisasi", "persuasif");
+        for($i = 0; $i < count($tipe_dishut); $i++){
+            $response = perform_http_request("POST", $base_api."revjo-post/".$tipe_dishut[$i], null);
+            $data[$tipe_dishut[$i]] = json_decode($response);
+            sleep(0.1);
+        }
+        
+        // print_r($data);
+        // exit();
+		
 		$this->template->load(template().'/template',template().'/content',$data);
 	}
 
